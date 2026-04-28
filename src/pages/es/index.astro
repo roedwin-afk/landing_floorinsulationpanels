@@ -13,7 +13,12 @@ const lang = getLang(Astro.url, import.meta.env.BASE_URL);
 const t = useTranslations(lang);
 ---
 
-<BaseLayout title="Aislamiento Industrial de Pisos" t={t} lang={lang}>
+<BaseLayout 
+  title="Aislamiento Industrial de Pisos"
+  description="Sistemas de paneles de aislamiento de alta densidad para almacenes industriales y cámaras frigoríficas."
+  t={t} 
+  lang={lang}
+>
   <main>
     <Hero t={t} lang={lang} />
     <Features t={t} lang={lang} />

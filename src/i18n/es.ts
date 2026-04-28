@@ -124,4 +124,10 @@ export const es = {
             compliance: 'Cumplimiento Industrial',
         },
     },
+    notFound: {
+        code: '404',
+        title: 'Página No Encontrada',
+        desc: 'La página que buscas no existe o ha sido movida.',
+        cta: 'Volver al Inicio',
+    },
 } as const;

@@ -2,6 +2,7 @@
 import type { TranslationKeys } from '../../i18n/en';
 import type { Lang } from '../../i18n/utils';
 import { Truck, Snowflake, Zap } from 'lucide-astro';
+import ScrollReveal from '../ui/ScrollReveal.astro';
 
 interface Props {
   t: TranslationKeys;
@@ -40,7 +41,8 @@ const features = [
     </div>
 
     <div class="features__grid">
-      {features.map(f => (
+      {features.map((f, i) => (
+        <ScrollReveal delay={i as 0 | 1 | 2 | 3}>
         <article class="feature-card">
           <div class="feature-card__img-wrap">
             <img src={f.image} alt={f.title} />
@@ -53,6 +55,7 @@ const features = [
             <p class="feature-card__desc">{f.desc}</p>
           </div>
         </article>
+        </ScrollReveal>
       ))}
     </div>
   </div>
