@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLang, useTranslations } from '../../i18n/utils';
+import Navbar from '../../components/layout/Navbar.astro';
+import Hero from '../../components/sections/Hero.astro';
+import Features from '../../components/sections/Features.astro';
+import PanelAnatomy from '../../components/sections/PanelAnatomy.astro';
+import InstallationProcess from '../../components/sections/InstallationProcess.astro';
+import TechSpecs from '../../components/sections/TechSpecs.astro';
+import ContactCTA from '../../components/sections/ContactCTA.astro';
+import Footer from '../../components/layout/Footer.astro';
+
+const lang = getLang(Astro.url, import.meta.env.BASE_URL);
+const t = useTranslations(lang);
+---
+
+<BaseLayout title="Aislamiento Industrial de Pisos">
+  <Navbar t={t} lang={lang} />
+  <main>
+    <Hero t={t} lang={lang} />
+    <Features t={t} lang={lang} />
+    <PanelAnatomy t={t} lang={lang} />
+    <InstallationProcess t={t} lang={lang} />
+    <TechSpecs t={t} lang={lang} />
+    <ContactCTA t={t} lang={lang} />
+    <Footer t={t} lang={lang} />
+  </main>
+</BaseLayout>

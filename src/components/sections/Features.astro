@@ -1,0 +1,174 @@
+---
+import type { TranslationKeys } from '../../i18n/en';
+import type { Lang } from '../../i18n/utils';
+import { Truck, Snowflake, Zap } from 'lucide-astro';
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+}
+
+const { t } = Astro.props;
+
+const features = [
+  {
+    icon: Truck,
+    image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1000&auto=format&fit=crop',
+    title: t.features.heavy.title,
+    desc:  t.features.heavy.desc,
+  },
+  {
+    icon: Snowflake,
+    image: 'https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=600&q=80',
+    title: t.features.thermal.title,
+    desc:  t.features.thermal.desc,
+  },
+  {
+    icon: Zap,
+    image: 'https://images.unsplash.com/photo-1579300254612-0ad98473c2d4?q=80&w=1074&auto=format&fit=crop',
+    title: t.features.rapid.title,
+    desc:  t.features.rapid.desc,
+  },
+];
+---
+
+<section id="features" class="features">
+  <div class="features__inner">
+    <div class="features__header">
+      <h2 class="features__title">{t.features.heading}</h2>
+      <div class="features__line"></div>
+    </div>
+
+    <div class="features__grid">
+      {features.map(f => (
+        <article class="feature-card">
+          <div class="feature-card__img-wrap">
+            <img src={f.image} alt={f.title} />
+          </div>
+          <div class="feature-card__body">
+            <span class="feature-card__icon">
+              <f.icon size={24} color="var(--color-primary)" />
+            </span>
+            <h3 class="feature-card__title">{f.title}</h3>
+            <p class="feature-card__desc">{f.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    padding: 6rem 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .features__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .features__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .features__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+  }
+
+  .features__line {
+    width: 48px;
+    height: 3px;
+    background: var(--color-primary);
+    margin: 1rem auto 0;
+  }
+
+  .features__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .feature-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+  }
+
+  .feature-card__img-wrap {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .feature-card__img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .feature-card:hover .feature-card__img-wrap img {
+    transform: scale(1.05);
+  }
+
+  .feature-card__body {
+    padding: 1.5rem;
+  }
+
+  .feature-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(37, 99, 235, 0.1);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card__title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-card__desc {
+    font-size: 0.9rem;
+    color: var(--color-muted-light);
+    line-height: 1.7;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 900px) {
+    .features__grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .features { padding: 4rem 0; }
+  }
+</style>

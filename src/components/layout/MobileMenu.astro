@@ -1,0 +1,109 @@
+---
+import type { TranslationKeys } from '../../i18n/en';
+import type { Lang } from '../../i18n/utils';
+import { getAlternatePath } from '../../i18n/utils';
+import NavLinks from '../ui/NavLinks.astro';
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const contactHref    = lang === 'es' ? `${base}es/contact/` : `${base}contact/`;
+const alternatePath  = getAlternatePath(Astro.url, base);
+const alternateLabel = lang === 'es' ? 'EN' : 'ES';
+---
+
+<div class="mobile-menu" id="mobile-menu">
+  <nav class="mobile-menu__nav">
+    <NavLinks t={t} lang={lang} />
+    <a href={contactHref} class="mobile-menu__cta">{t.nav.contact}</a>
+    <a href={alternatePath} class="mobile-menu__lang">{alternateLabel}</a>
+  </nav>
+</div>
+
+<script>
+  const burger = document.getElementById('navbar-burger');
+  const menu   = document.getElementById('mobile-menu');
+
+  burger?.addEventListener('click', () => {
+    menu?.classList.toggle('is-open');
+  });
+
+  // Cierra al hacer click en un link
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+    });
+  });
+</script>
+
+<style>
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background: rgba(10, 15, 26, 0.98);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid var(--color-border);
+    padding: 2rem;
+    flex-direction: column;
+  }
+
+  .mobile-menu.is-open {
+    display: flex;
+  }
+
+  .mobile-menu__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 1rem;
+  }
+
+  .mobile-menu__nav :global(.navlink) {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-muted-light);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+    display: block;
+  }
+
+  .mobile-menu__cta {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-align: center;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+  }
+
+  .mobile-menu__lang {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-align: center;
+    color: var(--color-muted-light);
+    border: 1px solid var(--color-border);
+    padding: 0.75rem;
+    border-radius: 4px;
+  }
+
+  @media (min-width: 769px) {
+    .mobile-menu { display: none !important; }
+  }
+</style>

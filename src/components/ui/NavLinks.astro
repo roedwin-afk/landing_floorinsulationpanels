@@ -1,0 +1,47 @@
+---
+import type { TranslationKeys } from '../../i18n/en';
+import type { Lang } from '../../i18n/utils';
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+  class?: string;
+}
+
+const { t, lang, class: className } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const homeHref = lang === 'es' ? `${base}es/` : base;
+
+const links = [
+  { label: t.nav.features,     href: `${homeHref}#features` },
+  { label: t.nav.techDetails,  href: `${homeHref}#layers`   },
+  { label: t.nav.installation, href: `${homeHref}#process`  },
+  { label: t.nav.specs,        href: `${homeHref}#specs`    },
+];
+---
+
+<ul class={className}>
+  {links.map(link => (
+    <li><a href={link.href} class="navlink">{link.label}</a></li>
+  ))}
+</ul>
+
+<style>
+  ul {
+    list-style: none;
+    display: contents;
+  }
+
+  .navlink {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-muted-light);
+    transition: color 0.2s;
+  }
+
+  .navlink:hover {
+    color: var(--color-accent);
+  }
+</style>

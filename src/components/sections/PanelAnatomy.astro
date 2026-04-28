@@ -1,0 +1,197 @@
+---
+import type { TranslationKeys } from '../../i18n/en';
+import type { Lang } from '../../i18n/utils';
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+}
+
+const { t } = Astro.props;
+---
+
+<section id="layers" class="anatomy">
+  <div class="anatomy__inner">
+
+    <div class="anatomy__header">
+      <h2 class="anatomy__title">{t.anatomy.heading}</h2>
+      <p class="anatomy__sub">{t.anatomy.subheading}</p>
+    </div>
+
+    <div class="anatomy__grid">
+
+      <div class="anatomy__visual">
+        <img
+          src="https://images.unsplash.com/photo-1545166539-f842733fd33c?q=80&w=1151&auto=format&fit=crop"
+          alt="Panel layer detail"
+        />
+        <div class="anatomy__visual-overlay">
+          <span class="anatomy__visual-badge">{t.anatomy.badge}</span>
+        </div>
+      </div>
+
+      <div class="anatomy__layers">
+        {t.anatomy.layers.map((layer: { title: string; desc: string }, i: number) => (
+          <div class="layer-card">
+            <div class="layer-card__number">{String(i + 1).padStart(2, '0')}</div>
+            <div class="layer-card__content">
+              <h4 class="layer-card__title">{layer.title}</h4>
+              <p class="layer-card__desc">{layer.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .anatomy {
+    padding: 6rem 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .anatomy__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .anatomy__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .anatomy__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .anatomy__sub {
+    font-size: 1rem;
+    color: var(--color-muted-light);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .anatomy__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  /* Visual */
+  .anatomy__visual {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+
+  .anatomy__visual img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+    opacity: 0.75;
+  }
+
+  .anatomy__visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,15,26,0.7) 0%, transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+  }
+
+  .anatomy__visual-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+  }
+
+  /* Layers */
+  .anatomy__layers {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .layer-card {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .layer-card:hover {
+    border-color: var(--color-primary);
+    transform: translateX(4px);
+  }
+
+  .layer-card__number {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    min-width: 36px;
+    padding-top: 2px;
+  }
+
+  .layer-card__title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .layer-card__desc {
+    font-size: 0.875rem;
+    color: var(--color-muted-light);
+    line-height: 1.7;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 900px) {
+    .anatomy__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .anatomy__visual img {
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .anatomy { padding: 4rem 0; }
+
+    .layer-card {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+</style>

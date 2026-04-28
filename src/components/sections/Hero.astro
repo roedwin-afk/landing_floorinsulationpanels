@@ -1,0 +1,212 @@
+---
+import type { TranslationKeys } from '../../i18n/en';
+import type { Lang } from '../../i18n/utils';
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const specsHref   = lang === 'es' ? `${base}es/#specs`   : `${base}#specs`;
+const processHref = lang === 'es' ? `${base}es/#process` : `${base}#process`;
+---
+
+<section class="hero">
+  <div class="hero__bg"></div>
+
+  <div class="hero__inner">
+    <div class="hero__content">
+      <span class="hero__badge">{t.hero.badge}</span>
+      <h1 class="hero__title">
+        {t.hero.title1} <br />
+        <span class="hero__title--accent">{t.hero.title2}</span>
+      </h1>
+      <p class="hero__desc">{t.hero.desc}</p>
+      <div class="hero__actions">
+        <a href={specsHref}   class="btn btn--primary">{t.hero.cta1}</a>
+        <a href={processHref} class="btn btn--ghost"  >{t.hero.cta2}</a>
+      </div>
+    </div>
+
+    <div class="hero__card">
+      <img
+        src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+        alt="Industrial construction detail"
+      />
+      <div class="hero__card-meta">
+        <span>{t.hero.meta1}</span>
+        <span>{t.hero.meta2}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 72px;
+    overflow: hidden;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(10, 15, 26, 0.9), rgba(10, 15, 26, 0.9)),
+      url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1950&q=80')
+      center/cover no-repeat;
+    z-index: 0;
+  }
+
+  .hero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(37, 99, 235, 0.15) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero__badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+  }
+
+  .hero__title--accent {
+    color: var(--color-primary);
+  }
+
+  .hero__desc {
+    font-size: 1.05rem;
+    color: var(--color-muted-light);
+    max-width: 480px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn--primary {
+    background: var(--color-primary);
+    color: #fff;
+    border: 1px solid var(--color-primary);
+  }
+  .btn--primary:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+  .btn--ghost:hover {
+    border-color: var(--color-muted-light);
+  }
+
+  .hero__card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero__card img {
+    border-radius: 12px;
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+
+  .hero__card-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 900px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      padding: 3rem 1.5rem;
+    }
+    .hero__card {
+      display: none;
+    }
+    .hero__title {
+      font-size: clamp(2.5rem, 10vw, 3.5rem);
+    }
+    .hero__desc {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero__actions {
+      flex-direction: column;
+    }
+    .btn {
+      text-align: center;
+    }
+  }
+</style>

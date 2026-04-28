@@ -1,0 +1,132 @@
+---
+import type { TranslationKeys } from '../../i18n/en';
+import type { Lang } from '../../i18n/utils';
+import { getAlternatePath } from '../../i18n/utils';
+import NavLinks from '../ui/NavLinks.astro';
+import MobileMenu from './MobileMenu.astro';
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const homeHref    = lang === 'es' ? `${base}es/` : base;
+const contactHref = lang === 'es' ? `${base}es/contact/` : `${base}contact/`;
+const alternatePath  = getAlternatePath(Astro.url, base);
+const alternateLabel = lang === 'es' ? 'EN' : 'ES';
+---
+
+<header class="navbar">
+  <div class="navbar__inner">
+
+    <a href={homeHref} class="navbar__logo">
+      <span class="navbar__logo-icon">▦</span>
+      <span>Floor<strong>Insulation</strong></span>
+    </a>
+
+    <nav class="navbar__links">
+      <NavLinks t={t} lang={lang} />
+      <a href={contactHref} class="navbar__cta">{t.nav.contact}</a>
+      <a href={alternatePath} class="navbar__lang">{alternateLabel}</a>
+    </nav>
+
+    <button class="navbar__burger" id="navbar-burger" aria-label="Open menu">&#9776;</button>
+
+  </div>
+</header>
+
+<MobileMenu t={t} lang={lang} />
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(10, 15, 26, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .navbar__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  .navbar__logo strong { color: var(--color-primary); }
+  .navbar__logo-icon {
+    font-size: 1.4rem;
+    color: var(--color-primary);
+  }
+
+  .navbar__links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .navbar__cta {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .navbar__cta:hover {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .navbar__lang {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-muted-light);
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 0.85rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .navbar__lang:hover {
+    color: var(--color-text);
+    border-color: var(--color-muted-light);
+  }
+
+  .navbar__burger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .navbar__links { display: none; }
+    .navbar__burger { display: block; }
+  }
+</style>
