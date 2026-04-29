@@ -2,6 +2,7 @@
 import type { TranslationKeys } from '../../i18n/en';
 import type { Lang } from '../../i18n/utils';
 import { ArrowRight, Mail } from 'lucide-astro';
+import ScrollReveal from '../ui/ScrollReveal.astro';
 
 interface Props {
   t: TranslationKeys;
@@ -15,6 +16,7 @@ const contactHref = lang === 'es' ? `${base}es/contact/` : `${base}contact/`;
 
 <section id="contact" class="cta">
   <div class="cta__inner">
+    <ScrollReveal variant="fade-up" delay={1}>
 
     <div class="cta__card">
       <div class="cta__left">
@@ -33,6 +35,7 @@ const contactHref = lang === 'es' ? `${base}es/contact/` : `${base}contact/`;
         </a>
       </div>
     </div>
+    </ScrollReveal>
 
   </div>
 </section>

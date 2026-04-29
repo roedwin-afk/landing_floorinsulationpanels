@@ -1,6 +1,7 @@
 ---
-import type { TranslationKeys } from '../../i18n/en';
-import type { Lang } from '../../i18n/utils';
+import type { TranslationKeys } from "../../i18n/en";
+import type { Lang } from "../../i18n/utils";
+import ScrollReveal from "../ui/ScrollReveal.astro";
 
 interface Props {
   t: TranslationKeys;
@@ -12,36 +13,43 @@ const { t } = Astro.props;
 
 <section id="layers" class="anatomy">
   <div class="anatomy__inner">
-
     <div class="anatomy__header">
       <h2 class="anatomy__title">{t.anatomy.heading}</h2>
       <p class="anatomy__sub">{t.anatomy.subheading}</p>
     </div>
 
     <div class="anatomy__grid">
-
-      <div class="anatomy__visual">
-        <img
-          src="https://images.unsplash.com/photo-1545166539-f842733fd33c?q=80&w=1151&auto=format&fit=crop"
-          alt="Panel layer detail"
-        />
-        <div class="anatomy__visual-overlay">
-          <span class="anatomy__visual-badge">{t.anatomy.badge}</span>
+      <ScrollReveal variant="fade-right" delay={0}>
+        <div class="anatomy__visual">
+          <img
+            src="https://images.unsplash.com/photo-1545166539-f842733fd33c?q=80&w=1151&auto=format&fit=crop"
+            alt="Panel layer detail"
+          />
+          <div class="anatomy__visual-overlay">
+            <span class="anatomy__visual-badge">{t.anatomy.badge}</span>
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       <div class="anatomy__layers">
-        {t.anatomy.layers.map((layer: { title: string; desc: string }, i: number) => (
-          <div class="layer-card">
-            <div class="layer-card__number">{String(i + 1).padStart(2, '0')}</div>
-            <div class="layer-card__content">
-              <h4 class="layer-card__title">{layer.title}</h4>
-              <p class="layer-card__desc">{layer.desc}</p>
-            </div>
-          </div>
-        ))}
+        {
+          t.anatomy.layers.map(
+            (layer: { title: string; desc: string }, i: number) => (
+              <ScrollReveal variant="fade-left" delay={i as 0 | 1 | 2 | 3}>
+                <div class="layer-card">
+                  <div class="layer-card__number">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div class="layer-card__content">
+                    <h4 class="layer-card__title">{layer.title}</h4>
+                    <p class="layer-card__desc">{layer.desc}</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ),
+          )
+        }
       </div>
-
     </div>
   </div>
 </section>
@@ -108,7 +116,11 @@ const { t } = Astro.props;
   .anatomy__visual-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(10,15,26,0.7) 0%, transparent 60%);
+    background: linear-gradient(
+      to top,
+      rgba(10, 15, 26, 0.7) 0%,
+      transparent 60%
+    );
     display: flex;
     align-items: flex-end;
     padding: 2rem;
@@ -141,7 +153,9 @@ const { t } = Astro.props;
     border: 1px solid var(--color-border);
     border-radius: 14px;
     padding: 1.5rem;
-    transition: border-color 0.3s, transform 0.3s;
+    transition:
+      border-color 0.3s,
+      transform 0.3s;
   }
 
   .layer-card:hover {
@@ -187,7 +201,9 @@ const { t } = Astro.props;
   }
 
   @media (max-width: 480px) {
-    .anatomy { padding: 4rem 0; }
+    .anatomy {
+      padding: 4rem 0;
+    }
 
     .layer-card {
       flex-direction: column;

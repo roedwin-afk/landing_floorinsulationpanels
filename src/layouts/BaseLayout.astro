@@ -2,7 +2,7 @@
 import type { TranslationKeys } from "../i18n/en";
 import type { Lang } from "../i18n/utils";
 import Navbar from "../components/layout/Navbar.astro";
-import { ClientRouter } from 'astro:transitions';
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -125,27 +125,32 @@ const {
     text-decoration: none;
   }
 
-  /* Scroll reveal */
+  /* ─── Scroll Reveal ─────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.fade-up    { transform: translateY(28px); }
+.reveal.fade-down  { transform: translateY(-28px); }
+.reveal.fade-left  { transform: translateX(-28px); }
+.reveal.fade-right { transform: translateX(28px); }
+.reveal.fade-in    { transform: none; }
+
+.reveal-delay-1 { transition-delay: 150ms; }
+.reveal-delay-2 { transition-delay: 300ms; }
+.reveal-delay-3 { transition-delay: 450ms; }
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
   .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition:
-      opacity 0.6s ease,
-      transform 0.6s ease;
-  }
-
-  .reveal.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+    transition: none;
   }
-
-  .reveal-delay-1 {
-    transition-delay: 0.1s;
-  }
-  .reveal-delay-2 {
-    transition-delay: 0.2s;
-  }
-  .reveal-delay-3 {
-    transition-delay: 0.3s;
-  }
+}
 </style>

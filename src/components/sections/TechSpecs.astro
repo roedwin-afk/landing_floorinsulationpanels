@@ -1,6 +1,7 @@
 ---
-import type { TranslationKeys } from '../../i18n/en';
-import type { Lang } from '../../i18n/utils';
+import type { TranslationKeys } from "../../i18n/en";
+import type { Lang } from "../../i18n/utils";
+import ScrollReveal from "../ui/ScrollReveal.astro";
 
 interface Props {
   t: TranslationKeys;
@@ -9,35 +10,39 @@ interface Props {
 
 const { t, lang } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const contactHref = lang === 'es' ? `${base}es/contact/` : `${base}contact/`;
+const contactHref = lang === "es" ? `${base}es/contact/` : `${base}contact/`;
 ---
 
 <section id="specs" class="specs">
   <div class="specs__inner">
-
     <div class="specs__grid">
-
-      <div class="specs__table-wrap">
-        <h2 class="specs__title">{t.specs.heading}</h2>
-        <div class="specs__table">
-          {t.specs.rows.map((row: { label: string; value: string }) => (
-            <div class="specs__row">
-              <span class="specs__label">{row.label}</span>
-              <span class="specs__value">{row.value}</span>
-            </div>
-          ))}
+      <ScrollReveal variant="fade-right" delay={0}>
+        <div class="specs__table-wrap">
+          <h2 class="specs__title">{t.specs.heading}</h2>
+          <div class="specs__table">
+            {
+              t.specs.rows.map((row: { label: string; value: string }) => (
+                <div class="specs__row">
+                  <span class="specs__label">{row.label}</span>
+                  <span class="specs__value">{row.value}</span>
+                </div>
+              ))
+            }
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
-      <div class="specs__cta">
-        <div class="specs__cta-inner">
-          <span class="specs__cta-icon">⬡</span>
-          <h3 class="specs__cta-title">{t.specs.cta.title}</h3>
-          <p class="specs__cta-desc">{t.specs.cta.desc}</p>
-          <a href={contactHref} class="specs__cta-btn">{t.specs.cta.button}</a>
+      <ScrollReveal variant="fade-left" delay={1}>
+        <div class="specs__cta">
+          <div class="specs__cta-inner">
+            <span class="specs__cta-icon">⬡</span>
+            <h3 class="specs__cta-title">{t.specs.cta.title}</h3>
+            <p class="specs__cta-desc">{t.specs.cta.desc}</p>
+            <a href={contactHref} class="specs__cta-btn">{t.specs.cta.button}</a
+            >
+          </div>
         </div>
-      </div>
-
+      </ScrollReveal>
     </div>
   </div>
 </section>
@@ -125,12 +130,12 @@ const contactHref = lang === 'es' ? `${base}es/contact/` : `${base}contact/`;
   }
 
   .specs__cta::before {
-    content: '⬡';
+    content: "⬡";
     position: absolute;
     bottom: -2rem;
     right: -1rem;
     font-size: 10rem;
-    color: rgba(255,255,255,0.05);
+    color: rgba(255, 255, 255, 0.05);
     line-height: 1;
   }
 
@@ -145,8 +150,8 @@ const contactHref = lang === 'es' ? `${base}es/contact/` : `${base}contact/`;
     justify-content: center;
     width: 48px;
     height: 48px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     font-size: 1.25rem;
     margin-bottom: 1.5rem;
@@ -165,7 +170,7 @@ const contactHref = lang === 'es' ? `${base}es/contact/` : `${base}contact/`;
 
   .specs__cta-desc {
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255, 255, 255, 0.75);
     line-height: 1.7;
     margin-bottom: 2rem;
   }
@@ -181,7 +186,9 @@ const contactHref = lang === 'es' ? `${base}es/contact/` : `${base}contact/`;
     padding: 0.9rem 2rem;
     border-radius: 4px;
     font-weight: 700;
-    transition: background 0.2s, transform 0.2s;
+    transition:
+      background 0.2s,
+      transform 0.2s;
   }
 
   .specs__cta-btn:hover {
@@ -198,8 +205,12 @@ const contactHref = lang === 'es' ? `${base}es/contact/` : `${base}contact/`;
   }
 
   @media (max-width: 480px) {
-    .specs { padding: 4rem 0; }
-    .specs__cta { padding: 2rem; }
+    .specs {
+      padding: 4rem 0;
+    }
+    .specs__cta {
+      padding: 2rem;
+    }
 
     .specs__row {
       flex-direction: column;

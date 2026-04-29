@@ -42,7 +42,7 @@ const features = [
 
     <div class="features__grid">
       {features.map((f, i) => (
-        <ScrollReveal delay={i as 0 | 1 | 2 | 3}>
+        <ScrollReveal variant="fade-up" delay={i as 0 | 1 | 2 | 3}>
         <article class="feature-card">
           <div class="feature-card__img-wrap">
             <img src={f.image} alt={f.title} />

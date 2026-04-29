@@ -130,6 +130,30 @@ export const en = {
         desc: 'The page you are looking for does not exist or has been moved.',
         cta: 'Back to Home',
     },
+    contactForm: {
+        eyebrow: "Get in Touch",
+        title: "Technical Inquiry",
+        description: "Our structural engineers are ready to assist with your load calculations and insulation specifications.",
+        email: "eng@floorinsulationpanels.com",
+        phone: "+1 800 000 0000",
+        address: "123 Industrial Ave, Suite 900, Houston, TX 77001, USA",
+        social: {
+            linkedin: "LinkedIn",
+            instagram: "Instagram",
+            whatsapp: "WhatsApp",
+        },
+        fields: {
+            firstName: "First Name",
+            lastName: "Last Name",
+            email: "Email",
+            email_placeholder: "you@company.com",
+            phone: "Phone",
+            phone_placeholder: "+1 000 000 0000",
+            message: "Message",
+            message_placeholder: "Describe your project requirements...",
+        },
+        submit: "Send Inquiry",
+    },
 } as const;
 
 type DeepString<T> = {

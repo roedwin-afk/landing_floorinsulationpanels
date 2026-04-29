@@ -130,4 +130,28 @@ export const es = {
         desc: 'La página que buscas no existe o ha sido movida.',
         cta: 'Volver al Inicio',
     },
+    contactForm: {
+        eyebrow: "Contáctanos",
+        title: "Consulta Técnica",
+        description: "Nuestros ingenieros estructurales están listos para ayudarte con tus cálculos de carga y especificaciones de aislamiento.",
+        email: "eng@floorinsulationpanels.com",
+        phone: "+1 800 000 0000",
+        address: "123 Industrial Ave, Suite 900, Houston, TX 77001, USA",
+        social: {
+            linkedin: "LinkedIn",
+            instagram: "Instagram",
+            whatsapp: "WhatsApp",
+        },
+        fields: {
+            firstName: "Nombre",
+            lastName: "Apellido",
+            email: "Correo",
+            email_placeholder: "tu@empresa.com",
+            phone: "Teléfono",
+            phone_placeholder: "+52 000 000 0000",
+            message: "Mensaje",
+            message_placeholder: "Describe los requerimientos de tu proyecto...",
+        },
+        submit: "Enviar Consulta",
+    },
 } as const;

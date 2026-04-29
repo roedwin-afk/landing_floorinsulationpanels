@@ -1,6 +1,7 @@
 ---
-import type { TranslationKeys } from '../../i18n/en';
-import type { Lang } from '../../i18n/utils';
+import type { TranslationKeys } from "../../i18n/en";
+import type { Lang } from "../../i18n/utils";
+import ScrollReveal from '../ui/ScrollReveal.astro';
 
 interface Props {
   t: TranslationKeys;
@@ -9,8 +10,8 @@ interface Props {
 
 const { t, lang } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const specsHref   = lang === 'es' ? `${base}es/#specs`   : `${base}#specs`;
-const processHref = lang === 'es' ? `${base}es/#process` : `${base}#process`;
+const specsHref = lang === "es" ? `${base}es/#specs` : `${base}#specs`;
+const processHref = lang === "es" ? `${base}es/#process` : `${base}#process`;
 ---
 
 <section class="hero">
@@ -20,26 +21,29 @@ const processHref = lang === 'es' ? `${base}es/#process` : `${base}#process`;
     <div class="hero__content">
       <span class="hero__badge">{t.hero.badge}</span>
       <h1 class="hero__title">
-        {t.hero.title1} <br />
+        {t.hero.title1}
+        <br />
         <span class="hero__title--accent">{t.hero.title2}</span>
       </h1>
       <p class="hero__desc">{t.hero.desc}</p>
       <div class="hero__actions">
-        <a href={specsHref}   class="btn btn--primary">{t.hero.cta1}</a>
-        <a href={processHref} class="btn btn--ghost"  >{t.hero.cta2}</a>
+        <a href={specsHref} class="btn btn--primary">{t.hero.cta1}</a>
+        <a href={processHref} class="btn btn--ghost">{t.hero.cta2}</a>
       </div>
     </div>
 
-    <div class="hero__card">
-      <img
-        src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
-        alt="Industrial construction detail"
-      />
-      <div class="hero__card-meta">
-        <span>{t.hero.meta1}</span>
-        <span>{t.hero.meta2}</span>
+    <ScrollReveal variant="fade-left" delay={1}>
+      <div class="hero__card">
+        <img
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+          alt="Industrial construction detail"
+        />
+        <div class="hero__card-meta">
+          <span>{t.hero.meta1}</span>
+          <span>{t.hero.meta2}</span>
+        </div>
       </div>
-    </div>
+    </ScrollReveal>
   </div>
 </section>
 
@@ -58,16 +62,19 @@ const processHref = lang === 'es' ? `${base}es/#process` : `${base}#process`;
     inset: 0;
     background:
       linear-gradient(rgba(10, 15, 26, 0.9), rgba(10, 15, 26, 0.9)),
-      url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1950&q=80')
-      center/cover no-repeat;
+      url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1950&q=80")
+        center/cover no-repeat;
     z-index: 0;
   }
 
   .hero__bg::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(37, 99, 235, 0.15) 1px, transparent 1px);
+    background-image: radial-gradient(
+      rgba(37, 99, 235, 0.15) 1px,
+      transparent 1px
+    );
     background-size: 32px 32px;
   }
 
@@ -158,7 +165,7 @@ const processHref = lang === 'es' ? `${base}es/#process` : `${base}#process`;
   }
 
   .hero__card {
-    background: rgba(255,255,255,0.03);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--color-border);
     border-radius: 20px;
     padding: 1.5rem;
