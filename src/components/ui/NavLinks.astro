@@ -12,11 +12,14 @@ const { t, lang, class: className } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const homeHref = lang === 'es' ? `${base}es/` : base;
 
+const techSpecsHref = lang === 'es' ? `${base}es/techSpecs` : `${base}techSpecs`;
+const installation = lang === 'es' ? `${base}es/installation` : `${base}installation`;
+
 const links = [
   { label: t.nav.features,     href: `${homeHref}#features` },
-  { label: t.nav.techDetails,  href: `${homeHref}#layers`   },
-  { label: t.nav.installation, href: `${homeHref}#process`  },
-  { label: t.nav.specs,        href: `${homeHref}#specs`    },
+  { label: t.nav.techSpecs,    href: techSpecsHref           },
+  { label: t.nav.installation, href: installation  },
+  // { label: t.nav.specs,        href: `${homeHref}#specs`    },
 ];
 ---
 

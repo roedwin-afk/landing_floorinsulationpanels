@@ -11,7 +11,7 @@ interface Props {
 const { t, lang } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const specsHref = lang === "es" ? `${base}es/#specs` : `${base}#specs`;
-const processHref = lang === "es" ? `${base}es/#process` : `${base}#process`;
+const processHref = lang === "es" ? `${base}es/installation` : `${base}installation`;
 ---
 
 <section class="hero">
@@ -32,7 +32,7 @@ const processHref = lang === "es" ? `${base}es/#process` : `${base}#process`;
       </div>
     </div>
 
-    <ScrollReveal variant="fade-left" delay={1}>
+    <ScrollReveal variant="fade-in" delay={1}>
       <div class="hero__card">
         <img
           src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"

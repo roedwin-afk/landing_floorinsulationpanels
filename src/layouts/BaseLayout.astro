@@ -32,14 +32,14 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image" content="/og-image.png" />
+    <meta name="twitter:image" content="/og-image.png" />
     <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={`${title} | Floor Insulation Panels`} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="/og-image.jpg" />
 
     <!-- Canonical -->
     <link rel="canonical" href={Astro.url.href} />
@@ -126,31 +126,49 @@ const {
   }
 
   /* ─── Scroll Reveal ─────────────────────────────── */
-.reveal {
-  opacity: 0;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.fade-up    { transform: translateY(28px); }
-.reveal.fade-down  { transform: translateY(-28px); }
-.reveal.fade-left  { transform: translateX(-28px); }
-.reveal.fade-right { transform: translateX(28px); }
-.reveal.fade-in    { transform: none; }
-
-.reveal-delay-1 { transition-delay: 150ms; }
-.reveal-delay-2 { transition-delay: 300ms; }
-.reveal-delay-3 { transition-delay: 450ms; }
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translate(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
   .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
+    opacity: 0;
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
   }
-}
+
+  .reveal.fade-up {
+    transform: translateY(28px);
+  }
+  .reveal.fade-down {
+    transform: translateY(-28px);
+  }
+  .reveal.fade-left {
+    transform: translateX(-28px);
+  }
+  .reveal.fade-right {
+    transform: translateX(28px);
+  }
+  .reveal.fade-in {
+    transform: none;
+  }
+
+  .reveal-delay-1 {
+    transition-delay: 150ms;
+  }
+  .reveal-delay-2 {
+    transition-delay: 300ms;
+  }
+  .reveal-delay-3 {
+    transition-delay: 450ms;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 </style>

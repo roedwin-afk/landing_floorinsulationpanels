@@ -1,0 +1,418 @@
+---
+import type { TranslationKeys } from "../../i18n/en";
+import type { Lang } from "../../i18n/utils";
+import ScrollReveal from "../ui/ScrollReveal.astro";
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+}
+
+const { t } = Astro.props;
+
+const thicknessData = [
+  { mm: 50,  pir: 2.27, xps: 1.52, eps: 1.43 },
+  { mm: 75,  pir: 3.41, xps: 2.27, eps: 2.14 },
+  { mm: 100, pir: 4.55, xps: 3.03, eps: 2.86 },
+  { mm: 125, pir: 5.68, xps: 3.79, eps: 3.57 },
+  { mm: 150, pir: 6.82, xps: 4.55, eps: 4.29 },
+  { mm: 200, pir: 9.09, xps: 6.06, eps: 5.71 },
+];
+
+const comparisonRows = [
+  { key: "lambda",      pir: t.techSpecs.comparison.values.pir.lambda,      xps: t.techSpecs.comparison.values.xps.lambda,      eps: t.techSpecs.comparison.values.eps.lambda },
+  { key: "compressive", pir: t.techSpecs.comparison.values.pir.compressive, xps: t.techSpecs.comparison.values.xps.compressive, eps: t.techSpecs.comparison.values.eps.compressive },
+  { key: "moisture",    pir: t.techSpecs.comparison.values.pir.moisture,    xps: t.techSpecs.comparison.values.xps.moisture,    eps: t.techSpecs.comparison.values.eps.moisture },
+  { key: "fire",        pir: t.techSpecs.comparison.values.pir.fire,        xps: t.techSpecs.comparison.values.xps.fire,        eps: t.techSpecs.comparison.values.eps.fire },
+  { key: "temp",        pir: t.techSpecs.comparison.values.pir.temp,        xps: t.techSpecs.comparison.values.xps.temp,        eps: t.techSpecs.comparison.values.eps.temp },
+  { key: "install",     pir: t.techSpecs.comparison.values.pir.install,     xps: t.techSpecs.comparison.values.xps.install,     eps: t.techSpecs.comparison.values.eps.install },
+];
+
+const rowLabels: Record<string, string> = {
+  lambda:      t.techSpecs.comparison.rows.lambda,
+  compressive: t.techSpecs.comparison.rows.compressive,
+  moisture:    t.techSpecs.comparison.rows.moisture,
+  fire:        t.techSpecs.comparison.rows.fire,
+  temp:        t.techSpecs.comparison.rows.temp,
+  install:     t.techSpecs.comparison.rows.install,
+};
+
+const generalItems = Object.values(t.techSpecs.general.items);
+---
+
+<main class="specs-page">
+
+  <!-- Hero -->
+  <section class="specs-hero">
+    <div class="specs-hero__inner">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <span class="badge">{t.techSpecs.hero.badge}</span>
+        <h1>{t.techSpecs.hero.title}</h1>
+        <p>{t.techSpecs.hero.subtitle}</p>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- Material Comparison -->
+  <section class="specs-section">
+    <div class="specs-container">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <div class="section-header">
+          <h2>{t.techSpecs.comparison.title}</h2>
+          <p>{t.techSpecs.comparison.subtitle}</p>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal variant="fade-up" delay={1}>
+        <div class="table-wrapper">
+          <table class="specs-table comparison-table">
+            <thead>
+              <tr>
+                <th>{t.techSpecs.comparison.headers.property}</th>
+                <th class="highlight-col">{t.techSpecs.comparison.headers.pir}</th>
+                <th>{t.techSpecs.comparison.headers.xps}</th>
+                <th>{t.techSpecs.comparison.headers.eps}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonRows.map((row) => (
+                <tr>
+                  <td class="row-label">{rowLabels[row.key]}</td>
+                  <td class="highlight-col">{row.pir}</td>
+                  <td>{row.xps}</td>
+                  <td>{row.eps}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- R-Value Table -->
+  <section class="specs-section specs-section--alt">
+    <div class="specs-container">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <div class="section-header">
+          <h2>{t.techSpecs.rvalue.title}</h2>
+          <p>{t.techSpecs.rvalue.subtitle}</p>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal variant="fade-up" delay={1}>
+        <div class="table-wrapper">
+          <table class="specs-table rvalue-table">
+            <thead>
+              <tr>
+                <th>{t.techSpecs.rvalue.headers.thickness}</th>
+                <th class="highlight-col">{t.techSpecs.rvalue.headers.pir}</th>
+                <th>{t.techSpecs.rvalue.headers.xps}</th>
+                <th>{t.techSpecs.rvalue.headers.eps}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {thicknessData.map((row) => (
+                <tr>
+                  <td class="row-label">{row.mm} mm</td>
+                  <td class="highlight-col">{row.pir.toFixed(2)}</td>
+                  <td>{row.xps.toFixed(2)}</td>
+                  <td>{row.eps.toFixed(2)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">{t.techSpecs.rvalue.note}</p>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- General Specs -->
+  <section class="specs-section">
+    <div class="specs-container">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <div class="section-header">
+          <h2>{t.techSpecs.general.title}</h2>
+          <p>{t.techSpecs.general.subtitle}</p>
+        </div>
+      </ScrollReveal>
+
+      <div class="general-grid">
+        {generalItems.map((item, i) => (
+          <ScrollReveal variant="fade-up" delay={i % 3 as 0 | 1 | 2}>
+            <div class="general-item">
+              <span class="general-item__label">{item.label}</span>
+              <span class="general-item__value">{item.value}</span>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="specs-cta">
+    <div class="specs-container">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <div class="cta-card">
+          <h2>{t.techSpecs.cta.title}</h2>
+          <p>{t.techSpecs.cta.subtitle}</p>
+          <a href="/contact" class="cta-btn">{t.techSpecs.cta.button}</a>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+</main>
+
+<style>
+  /* ── Hero ── */
+  .specs-hero {
+    background: linear-gradient(135deg, var(--color-bg-dark, #0f172a) 0%, #1e3a5f 100%);
+    padding: 10rem var(--space-4) 6rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  .specs-hero__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+    color: var(--color-accent);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+  }
+
+  .specs-hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: var(--space-4);
+    color: #fff;
+  }
+
+  .specs-hero p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  /* ── Sections ── */
+  .specs-section {
+    padding: var(--space-20) var(--space-4);
+    background: var(--color-bg);
+  }
+
+  .specs-section--alt {
+    background: var(--color-surface);
+  }
+
+  .specs-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .section-header p {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── Tables ── */
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 560px;
+  }
+
+  .specs-table thead tr {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .specs-table thead th {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .specs-table tbody tr {
+    border-bottom: 1px solid var(--color-border);
+    transition: background 0.15s ease;
+  }
+
+  .specs-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .specs-table tbody tr:hover {
+    background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+  }
+
+  .specs-table tbody td {
+    padding: 0.9rem 1.25rem;
+    color: var(--color-text-primary);
+    vertical-align: middle;
+  }
+
+  .row-label {
+    color: var(--color-text-secondary) !important;
+    font-size: 0.8rem !important;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .highlight-col {
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+    font-weight: 700;
+    color: var(--color-accent) !important;
+  }
+
+  thead .highlight-col {
+    background: color-mix(in srgb, #000 15%, var(--color-accent));
+    color: #fff !important;
+  }
+
+  .table-note {
+    margin-top: var(--space-4);
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* ── General Grid ── */
+  .general-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .general-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .general-item:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+  }
+
+  .general-item__label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+  }
+
+  .general-item__value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+  }
+
+  /* ── CTA ── */
+  .specs-cta {
+    padding: var(--space-20) var(--space-4);
+    background: var(--color-bg);
+  }
+
+  .cta-card {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #1d4ed8 100%);
+    border-radius: var(--radius-xl);
+    padding: var(--space-16) var(--space-12);
+    text-align: center;
+    color: #fff;
+  }
+
+  .cta-card h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: var(--space-4);
+    color: #fff;
+  }
+
+  .cta-card p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 500px;
+    margin: 0 auto var(--space-8);
+    line-height: 1.7;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: #fff;
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  @media (max-width: 640px) {
+    .cta-card {
+      padding: var(--space-10) var(--space-6);
+    }
+
+    .general-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

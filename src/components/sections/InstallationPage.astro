@@ -1,0 +1,582 @@
+---
+import type { TranslationKeys } from "../../i18n/en";
+import type { Lang } from "../../i18n/utils";
+import ScrollReveal from "../ui/ScrollReveal.astro";
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+
+const steps = t.installation.steps.items;
+const mistakes = t.installation.mistakes.items;
+const tools = t.installation.prerequisites.tools.items;
+const substrate = t.installation.prerequisites.substrate.items;
+---
+
+<main class="install-page">
+
+  <!-- Hero -->
+  <section class="install-hero">
+    <div class="install-hero__inner">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <span class="badge">{t.installation.hero.badge}</span>
+        <h1>{t.installation.hero.title}</h1>
+        <p>{t.installation.hero.subtitle}</p>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- Prerequisites -->
+  <section class="prereq-section">
+    <div class="install-container">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <div class="section-header">
+          <h2>{t.installation.prerequisites.title}</h2>
+          <p>{t.installation.prerequisites.subtitle}</p>
+        </div>
+      </ScrollReveal>
+
+      <div class="prereq-grid">
+        <ScrollReveal variant="fade-right" delay={0}>
+          <div class="prereq-card">
+            <div class="prereq-card__label">
+              <span class="card-tag">{t.installation.prerequisites.tools.title}</span>
+            </div>
+            <ul class="tool-list">
+              {tools.map((item) => (
+                <li>
+                  <span class="tool-dot"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal variant="fade-left" delay={1}>
+          <div class="prereq-card">
+            <div class="prereq-card__label">
+              <span class="card-tag">{t.installation.prerequisites.substrate.title}</span>
+            </div>
+            <div class="substrate-list">
+              {substrate.map((item) => (
+                <div class="substrate-item">
+                  <span class="substrate-label">{item.label}</span>
+                  <span class="substrate-value">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="steps-section">
+    <div class="install-container">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <div class="section-header">
+          <h2>{t.installation.steps.title}</h2>
+          <p>{t.installation.steps.subtitle}</p>
+        </div>
+      </ScrollReveal>
+
+      <div class="steps-list">
+        {steps.map((step, i) => (
+          <ScrollReveal variant="fade-up" delay={(i % 3) as 0 | 1 | 2}>
+            <div class="step-card">
+              <div class="step-card__side">
+                <span class="step-number">{step.number}</span>
+                <span class="step-duration">{step.duration}</span>
+              </div>
+              <div class="step-card__body">
+                <h3>{step.title}</h3>
+                <p class="step-desc">{step.description}</p>
+                <div class="step-warning">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                  <span>{step.warning}</span>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Mistakes -->
+  <section class="mistakes-section">
+    <div class="install-container">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <div class="section-header">
+          <h2>{t.installation.mistakes.title}</h2>
+          <p>{t.installation.mistakes.subtitle}</p>
+        </div>
+      </ScrollReveal>
+
+      <div class="mistakes-grid">
+        {mistakes.map((item, i) => (
+          <ScrollReveal variant="fade-up" delay={(i % 3) as 0 | 1 | 2}>
+            <div class="mistake-card">
+              <div class="mistake-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="15" y1="9" x2="9" y2="15"/>
+                  <line x1="9" y1="9" x2="15" y2="15"/>
+                </svg>
+              </div>
+              <div class="mistake-body">
+                <h4>{item.title}</h4>
+                <p>{item.description}</p>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="install-cta">
+    <div class="install-container">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <div class="cta-card">
+          <h2>{t.installation.cta.title}</h2>
+          <p>{t.installation.cta.subtitle}</p>
+          <a href={lang === "es" ? "/es/contact" : "/contact"} class="cta-btn">
+            {t.installation.cta.button}
+          </a>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+</main>
+
+<style>
+  /* ── Base ── */
+  .install-page {
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  .install-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 var(--space-4, 1.5rem);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .section-header p {
+    font-size: 1rem;
+    color: var(--color-muted-light);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── Hero ── */
+  .install-hero {
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10rem 1.5rem 6rem;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(56,189,248,0.08) 0%, transparent 70%),
+      var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .install-hero__inner {
+    max-width: 720px;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    background: rgba(56,189,248,0.1);
+    border: 1px solid rgba(56,189,248,0.25);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .install-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+
+  .install-hero p {
+    font-size: 1.05rem;
+    color: var(--color-muted-light);
+    line-height: 1.75;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ── Prerequisites ── */
+  .prereq-section {
+    padding: 6rem 1.5rem;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .prereq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .prereq-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    height: 100%;
+  }
+
+  .card-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-accent);
+    border-bottom: 1px solid rgba(56,189,248,0.3);
+    padding-bottom: 0.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .prereq-card__label {
+    margin-bottom: 1.5rem;
+  }
+
+  .tool-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .tool-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-size: 0.9rem;
+    color: var(--color-muted-light);
+    line-height: 1.5;
+  }
+
+  .tool-dot {
+    flex-shrink: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+
+  .substrate-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .substrate-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .substrate-item:last-child {
+    border-bottom: none;
+  }
+
+  .substrate-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-muted);
+  }
+
+  .substrate-value {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  /* ── Steps ── */
+  .steps-section {
+    padding: 6rem 1.5rem;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .step-card {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 0;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .step-card:hover {
+    border-color: rgba(56,189,248,0.4);
+  }
+
+  .step-card__side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 2rem 1rem;
+    background: rgba(56,189,248,0.05);
+    border-right: 1px solid var(--color-border);
+  }
+
+  .step-number {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+
+  .step-duration {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+    text-align: center;
+  }
+
+  .step-card__body {
+    padding: 2rem 2.5rem;
+  }
+
+  .step-card__body h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-desc {
+    font-size: 0.9rem;
+    color: var(--color-muted-light);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  .step-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding: 0.85rem 1.1rem;
+    background: rgba(239,68,68,0.07);
+    border: 1px solid rgba(239,68,68,0.18);
+    border-radius: 8px;
+    color: #fca5a5;
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  .step-warning svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #f87171;
+  }
+
+  /* ── Mistakes ── */
+  .mistakes-section {
+    padding: 6rem 1.5rem;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mistakes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .mistake-card {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    transition: border-color 0.2s ease;
+  }
+
+  .mistake-card:hover {
+    border-color: rgba(239,68,68,0.35);
+  }
+
+  .mistake-icon {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(239,68,68,0.1);
+    color: #f87171;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mistake-body h4 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .mistake-body p {
+    font-size: 0.85rem;
+    color: var(--color-muted-light);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── CTA ── */
+  .install-cta {
+    padding: 6rem 1.5rem;
+    background: var(--color-surface);
+  }
+
+  .cta-card {
+    background: linear-gradient(135deg, rgba(37,99,235,0.9) 0%, rgba(56,189,248,0.15) 100%);
+    border: 1px solid rgba(56,189,248,0.2);
+    border-radius: 20px;
+    padding: 5rem 3rem;
+    text-align: center;
+  }
+
+  .cta-card h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .cta-card p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background: var(--color-accent);
+    color: #0a0f1a;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .prereq-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .step-card {
+      grid-template-columns: 1fr;
+    }
+
+    .step-card__side {
+      flex-direction: row;
+      justify-content: flex-start;
+      padding: 1.25rem 1.75rem;
+      border-right: none;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .step-card__body {
+      padding: 1.5rem 1.75rem;
+    }
+
+    .cta-card {
+      padding: 3rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mistakes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

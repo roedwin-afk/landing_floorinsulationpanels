@@ -9,12 +9,14 @@ interface Props {
     lang: Lang;
 }
 
-// al inicio del frontmatter, agrega:
+
 const { t, lang } = Astro.props;
-const baseUrl = import.meta.env.SITE; // define SITE en astro.config.mjs
-const thankYouUrl = lang === "es"
-  ? `${baseUrl}/es/thank-you`
-  : `${baseUrl}/thank-you`;
+
+const site = import.meta.env.SITE ?? "https://roedwin-afk.github.io";
+const base = import.meta.env.BASE_URL ?? "/landing_floorinsulationpanels/";
+const thankYouPath = lang === "es" ? "es/thank-you" : "thank-you";
+const thankYouUrl = `${site}${base}${thankYouPath}`;
+
 
 ---
 
