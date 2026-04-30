@@ -154,4 +154,14 @@ export const es = {
         },
         submit: "Enviar Consulta",
     },
+    thankYou: {
+  badge: "Mensaje Recibido",
+  title: "¡Gracias!",
+  subtitle: "Tu consulta fue enviada exitosamente. Nuestro equipo de ingeniería revisará tus requerimientos y te contactará en un plazo de 1 día hábil.",
+  backHome: "Volver al Inicio",
+  meta: {
+    title: "Gracias | Paneles de Aislamiento de Piso",
+    description: "Tu consulta ha sido recibida. Te contactaremos a la brevedad.",
+  },
+},
 } as const;

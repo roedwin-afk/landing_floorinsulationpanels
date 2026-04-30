@@ -154,6 +154,16 @@ export const en = {
         },
         submit: "Send Inquiry",
     },
+    thankYou: {
+        badge: "Message Received",
+        title: "Thank You!",
+        subtitle: "Your inquiry has been submitted successfully. Our engineering team will review your requirements and get back to you within 1 business day.",
+        backHome: "Back to Home",
+        meta: {
+            title: "Thank You | Floor Insulation Panels",
+            description: "Your inquiry has been received. We will get back to you shortly.",
+        },
+    },
 } as const;
 
 type DeepString<T> = {

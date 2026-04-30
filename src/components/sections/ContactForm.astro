@@ -9,7 +9,13 @@ interface Props {
     lang: Lang;
 }
 
-const { t } = Astro.props;
+// al inicio del frontmatter, agrega:
+const { t, lang } = Astro.props;
+const baseUrl = import.meta.env.SITE; // define SITE en astro.config.mjs
+const thankYouUrl = lang === "es"
+  ? `${baseUrl}/es/thank-you`
+  : `${baseUrl}/thank-you`;
+
 ---
 
 <section class="contact" id="contact">
@@ -162,7 +168,7 @@ const { t } = Astro.props;
                 <input
                     type="hidden"
                     name="zf_redirect_url"
-                    value="/thank-you"
+                    value={thankYouUrl}
                 />
                 <input type="hidden" name="zc_gad" value="" />
 
