@@ -12,7 +12,7 @@ const { t, lang, class: className } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const homeHref = lang === 'es' ? `${base}es/` : base;
 
-const techSpecsHref = lang === 'es' ? `${base}es/techSpecs` : `${base}techSpecs`;
+const techSpecsHref = lang === 'es' ? `${base}es/tech-specs` : `${base}tech-specs`;
 const installation = lang === 'es' ? `${base}es/installation` : `${base}installation`;
 
 const links = [
@@ -33,15 +33,16 @@ const links = [
   ul {
     list-style: none;
     display: contents;
+    font-weight: bold;
   }
 
   .navlink {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--color-muted-light);
-    transition: color 0.2s;
+    transition: color 0.2s;    
   }
 
   .navlink:hover {
