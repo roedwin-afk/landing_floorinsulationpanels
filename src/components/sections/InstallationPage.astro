@@ -9,6 +9,8 @@ interface Props {
 }
 
 const { t, lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const contactHref = lang === 'es' ? `${base}es/contact` : `${base}contact`;
 
 const steps = t.installation.steps.items;
 const mistakes = t.installation.mistakes.items;
@@ -151,7 +153,7 @@ const substrate = t.installation.prerequisites.substrate.items;
         <div class="cta-card">
           <h2>{t.installation.cta.title}</h2>
           <p>{t.installation.cta.subtitle}</p>
-          <a href={lang === "es" ? "/es/contact" : "/contact"} class="cta-btn">
+          <a href={contactHref} class="cta-btn">
             {t.installation.cta.button}
           </a>
         </div>
