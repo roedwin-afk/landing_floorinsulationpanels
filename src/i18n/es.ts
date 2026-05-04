@@ -3,6 +3,7 @@ export const es = {
         features: 'Características',
         installation: 'Instalación',
         specs: 'Especificaciones',
+        blog: 'Blog',
         techSpecs: 'Especificaciones Técnicas',
         contact: 'Contáctanos',
     },
@@ -380,5 +381,14 @@ export const es = {
             subtitle: "Nuestros ingenieros de instalación pueden asistirte con la evaluación del sustrato, especificación de paneles y supervisión del proyecto.",
             button: "Solicitar Soporte de Instalación",
         },
+    },
+    blog: {
+        tagline: "Perspectivas del Sector",
+        title_line1: "Conocimiento",
+        title_line2: "Técnico",
+        description: "Guías de ingeniería, mejores prácticas de instalación y noticias del sector para profesionales del aislamiento de piso industrial.",
+        btncta: "Leer Más",
+        btn_prev: "Anterior",
+        btn_next: "Siguiente",
     },
 } as const;

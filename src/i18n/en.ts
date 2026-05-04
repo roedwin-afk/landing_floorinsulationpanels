@@ -3,6 +3,7 @@ export const en = {
         features: 'Features',
         installation: 'Installation',
         specs: 'Specs',
+        blog: 'Blog',
         techSpecs: 'Technical Specs',
         contact: 'Contact Us',
     },
@@ -380,6 +381,15 @@ export const en = {
             subtitle: "Our installation engineers can assist with substrate assessment, panel specification, and project supervision.",
             button: "Request Installation Support",
         },
+    },
+    blog: {
+        tagline: "Industry Insights",
+        title_line1: "Technical",
+        title_line2: "Knowledge",
+        description: "Engineering guides, installation best practices, and industry news for industrial floor insulation professionals.",
+        btncta: "Read More",
+        btn_prev: "Previous",
+        btn_next: "Next",
     },
 } as const;
 
