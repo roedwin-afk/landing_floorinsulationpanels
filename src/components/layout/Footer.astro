@@ -1,8 +1,11 @@
 ---
-import type { TranslationKeys } from '../../i18n/en';
-import type { Lang } from '../../i18n/utils';
-import { Linkedin, Instagram } from 'lucide-astro';
-import NavLinks from '../ui/NavLinks.astro';
+import type { TranslationKeys } from "../../i18n/en";
+import type { Lang } from "../../i18n/utils";
+import { Linkedin, Instagram } from "lucide-astro";
+import NavLinks from "../ui/NavLinks.astro";
+import { Image } from "astro:assets";
+
+import logo from "../../assets/logo.svg";
 
 interface Props {
   t: TranslationKeys;
@@ -11,19 +14,27 @@ interface Props {
 
 const { t, lang } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const homeHref = lang === 'es' ? `${base}es/` : base;
+const homeHref = lang === "es" ? `${base}es/` : base;
 ---
 
 <footer class="footer">
   <div class="footer__inner">
-
     <div class="footer__top">
-
       <!-- Brand -->
       <div class="footer__brand">
         <a href={homeHref} class="footer__logo">
-          <span class="footer__logo-icon">▦</span>
-          <span>Floor<strong>Insulation</strong></span>
+          <!-- <span class="footer__logo-icon">▦</span>
+          <span>Floor<strong>Insulation</strong></span> -->
+          <Image
+            src={logo}
+            alt="Panel sándwich para techo industrial"
+            width={200}
+            height={50}
+            class="footer__logo-img"
+            format="webp"
+            quality={85}
+            loading="eager"
+          />
         </a>
         <p class="footer__tagline">{t.footer.tagline}</p>
         <div class="footer__social">
@@ -48,9 +59,17 @@ const homeHref = lang === 'es' ? `${base}es/` : base;
       <div class="footer__col">
         <h5 class="footer__col-heading">{t.footer.company.heading}</h5>
         <ul class="footer__links">
-          {t.footer.company.links.map((link: { label: string; href: string }) => (
-            <li><a href={link.href} class="footer__link">{link.label}</a></li>
-          ))}
+          {
+            t.footer.company.links.map(
+              (link: { label: string; href: string }) => (
+                <li>
+                  <a href={link.href} class="footer__link">
+                    {link.label}
+                  </a>
+                </li>
+              ),
+            )
+          }
         </ul>
       </div>
 
@@ -58,18 +77,24 @@ const homeHref = lang === 'es' ? `${base}es/` : base;
       <div class="footer__col">
         <h5 class="footer__col-heading">{t.footer.support.heading}</h5>
         <ul class="footer__links">
-          {t.footer.support.links.map((link: { label: string; href: string }) => (
-            <li><a href={link.href} class="footer__link">{link.label}</a></li>
-          ))}
+          {
+            t.footer.support.links.map(
+              (link: { label: string; href: string }) => (
+                <li>
+                  <a href={link.href} class="footer__link">
+                    {link.label}
+                  </a>
+                </li>
+              ),
+            )
+          }
         </ul>
       </div>
-
     </div>
 
     <div class="footer__bottom">
       <p class="footer__copyright">{t.footer.legal.copyright}</p>
     </div>
-
   </div>
 </footer>
 
@@ -107,11 +132,20 @@ const homeHref = lang === 'es' ? `${base}es/` : base;
     margin-bottom: 1.25rem;
   }
 
-  .footer__logo strong { color: var(--color-primary); }
+  .footer__logo strong {
+    color: var(--color-primary);
+  }
 
   .footer__logo-icon {
     font-size: 1.2rem;
     color: var(--color-primary);
+  }
+
+  .footer__logo-img {
+    display: block;
+    height: 2.5rem;
+    width: auto;
+    filter: brightness(0) invert(1);
   }
 
   .footer__tagline {
@@ -137,7 +171,10 @@ const homeHref = lang === 'es' ? `${base}es/` : base;
     border: 1px solid var(--color-border);
     border-radius: 8px;
     color: var(--color-muted-light);
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    transition:
+      background 0.2s,
+      color 0.2s,
+      border-color 0.2s;
   }
 
   .footer__social-link:hover {
@@ -147,7 +184,8 @@ const homeHref = lang === 'es' ? `${base}es/` : base;
   }
 
   /* Nav column */
-  .footer__nav-col { }
+  .footer__nav-col {
+  }
 
   .footer__nav {
     display: flex;

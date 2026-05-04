@@ -2,8 +2,11 @@
 import type { TranslationKeys } from '../../i18n/en';
 import type { Lang } from '../../i18n/utils';
 import { getAlternatePath } from '../../i18n/utils';
+import { Image } from "astro:assets";
 import NavLinks from '../ui/NavLinks.astro';
 import MobileMenu from './MobileMenu.astro';
+
+import logo from "../../assets/logo.svg";
 
 interface Props {
   t: TranslationKeys;
@@ -22,8 +25,19 @@ const alternateLabel = lang === 'es' ? 'EN' : 'ES';
   <div class="navbar__inner">
 
     <a href={homeHref} class="navbar__logo">
-      <span class="navbar__logo-icon">▦</span>
-      <span>Floor<strong>Insulation</strong></span>
+      <!-- <span class="navbar__logo-icon">▦</span>
+      <span>Floor<strong>Insulation</strong></span> -->
+      <Image
+        src={logo}
+        alt="Panel sándwich para techo industrial"
+        width={200}
+        height={50}
+        class="navbar__logo-img"
+        format="webp"
+        quality={85}
+        loading="eager"
+      />
+    </a>
     </a>
 
     <nav class="navbar__links">
@@ -76,6 +90,12 @@ const alternateLabel = lang === 'es' ? 'EN' : 'ES';
   .navbar__logo-icon {
     font-size: 1.4rem;
     color: var(--color-primary);
+  }
+  .navbar__logo-img {
+    display: block;
+    height: 2.5rem;
+    width: auto;
+    filter: brightness(0) invert(1);
   }
 
   .navbar__links {

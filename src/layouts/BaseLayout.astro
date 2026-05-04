@@ -32,9 +32,18 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:image" content="/og-image.png" />
-    <meta name="twitter:image" content="/og-image.png" />
     <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
+
+    <meta
+      property="og:image"
+      content={new URL(`${import.meta.env.BASE_URL}og-image.png`, Astro.url)
+        .href}
+    />
+    <meta
+      name="twitter:image"
+      content={new URL(`${import.meta.env.BASE_URL}og-image.png`, Astro.url)
+        .href}
+    />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -62,8 +71,14 @@ const {
     />
 
     <title>{title} | Floor Insulation Panels</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={`${import.meta.env.BASE_URL}favicon.svg`}
+      <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@700;900&family=JetBrains+Mono:wght@400;500&display=swap"
