@@ -135,8 +135,8 @@ export const en = {
         title: "Technical Inquiry",
         description: "Our structural engineers are ready to assist with your load calculations and insulation specifications.",
         email: "eng@floorinsulationpanels.com",
-        phone: "+1 800 000 0000",
-        address: "123 Industrial Ave, Suite 900, Houston, TX 77001, USA",
+        phone: "+52 55 9990 3546",
+        address: "Avenida Presidente Masaryk No. 61, Int. 901, Polanco V Sección, C.P. 11560, Miguel Hidalgo, Mexico City, Mexico",
         social: {
             linkedin: "LinkedIn",
             instagram: "Instagram",
