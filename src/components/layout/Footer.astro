@@ -1,7 +1,7 @@
 ---
 import type { TranslationKeys } from "../../i18n/en";
 import type { Lang } from "../../i18n/utils";
-import { Linkedin, Instagram } from "lucide-astro";
+import { Facebook, Linkedin, Instagram, Phone } from "lucide-astro";
 import NavLinks from "../ui/NavLinks.astro";
 import { Image } from "astro:assets";
 
@@ -38,11 +38,17 @@ const homeHref = lang === "es" ? `${base}es/` : base;
         </a>
         <p class="footer__tagline">{t.footer.tagline}</p>
         <div class="footer__social">
+          <a href="#" aria-label="Facebook" class="footer__social-link">
+            <Facebook size={16} />
+          </a>
           <a href="#" aria-label="LinkedIn" class="footer__social-link">
             <Linkedin size={16} />
           </a>
           <a href="#" aria-label="Instagram" class="footer__social-link">
             <Instagram size={16} />
+          </a>
+          <a href="#" aria-label="Phone" class="footer__social-link">
+            <Phone size={16} />
           </a>
         </div>
       </div>
