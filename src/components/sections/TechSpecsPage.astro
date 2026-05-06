@@ -70,10 +70,25 @@ const rowLabels: Record<string, string> = {
 };
 
 const generalItems = Object.values(t.techSpecs.general.items);
+
+/* Icon map per general item index (lucide SVG paths) */
+const generalIcons = [
+  `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 6H3"/><path d="M21 12H3"/><path d="M21 18H3"/></svg>`,          /* width */
+  `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l-3 3 3 3"/><path d="M19 9l3 3-3 3"/><path d="M2 12h20"/></svg>`, /* length */
+  `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="4" rx="1"/><rect x="2" y="10" width="20" height="4" rx="1"/><rect x="2" y="17" width="20" height="4" rx="1"/></svg>`, /* thicknesses */
+  `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><path d="M6.5 8a2.5 2.5 0 0 0 0 5"/><path d="M17.5 8a2.5 2.5 0 0 1 0 5"/><path d="M12 8v13"/><path d="M9 21h6"/></svg>`, /* weight pir */
+  `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><path d="M6.5 8a2.5 2.5 0 0 0 0 5"/><path d="M17.5 8a2.5 2.5 0 0 1 0 5"/><path d="M12 8v13"/><path d="M9 21h6"/></svg>`, /* weight xps */
+  `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,  /* edge profile */
+  `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`, /* standard */
+  `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>`, /* certification */
+  `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/></svg>`, /* surface */
+  `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 1 5 5c0 5-5 13-5 13S7 12 7 7a5 5 0 0 1 5-5z"/><circle cx="12" cy="7" r="2"/></svg>`, /* vapor */
+];
 ---
 
 <main class="specs-page">
-  <!-- Hero -->
+
+  <!-- ── Hero ── -->
   <section class="specs-hero">
     <div class="specs-hero__inner">
       <ScrollReveal variant="fade-up" delay={0}>
@@ -84,7 +99,7 @@ const generalItems = Object.values(t.techSpecs.general.items);
     </div>
   </section>
 
-  <!-- Material Comparison -->
+  <!-- ── Material Comparison ── -->
   <section class="specs-section">
     <div class="specs-container">
       <ScrollReveal variant="fade-up" delay={0}>
@@ -93,31 +108,26 @@ const generalItems = Object.values(t.techSpecs.general.items);
           <p>{t.techSpecs.comparison.subtitle}</p>
         </div>
       </ScrollReveal>
-
       <ScrollReveal variant="fade-up" delay={1}>
         <div class="table-wrapper">
           <table class="specs-table comparison-table">
             <thead>
               <tr>
                 <th>{t.techSpecs.comparison.headers.property}</th>
-                <th class="highlight-col"
-                  >{t.techSpecs.comparison.headers.pir}</th
-                >
+                <th class="highlight-col">{t.techSpecs.comparison.headers.pir}</th>
                 <th>{t.techSpecs.comparison.headers.xps}</th>
                 <th>{t.techSpecs.comparison.headers.eps}</th>
               </tr>
             </thead>
             <tbody>
-              {
-                comparisonRows.map((row) => (
-                  <tr>
-                    <td class="row-label">{rowLabels[row.key]}</td>
-                    <td class="highlight-col">{row.pir}</td>
-                    <td>{row.xps}</td>
-                    <td>{row.eps}</td>
-                  </tr>
-                ))
-              }
+              {comparisonRows.map((row) => (
+                <tr>
+                  <td class="row-label">{rowLabels[row.key]}</td>
+                  <td class="highlight-col">{row.pir}</td>
+                  <td>{row.xps}</td>
+                  <td>{row.eps}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -125,7 +135,7 @@ const generalItems = Object.values(t.techSpecs.general.items);
     </div>
   </section>
 
-  <!-- R-Value Table -->
+  <!-- ── R-Value Table ── -->
   <section class="specs-section specs-section--alt">
     <div class="specs-container">
       <ScrollReveal variant="fade-up" delay={0}>
@@ -134,7 +144,6 @@ const generalItems = Object.values(t.techSpecs.general.items);
           <p>{t.techSpecs.rvalue.subtitle}</p>
         </div>
       </ScrollReveal>
-
       <ScrollReveal variant="fade-up" delay={1}>
         <div class="table-wrapper">
           <table class="specs-table rvalue-table">
@@ -147,16 +156,14 @@ const generalItems = Object.values(t.techSpecs.general.items);
               </tr>
             </thead>
             <tbody>
-              {
-                thicknessData.map((row) => (
-                  <tr>
-                    <td class="row-label">{row.mm} mm</td>
-                    <td class="highlight-col">{row.pir.toFixed(2)}</td>
-                    <td>{row.xps.toFixed(2)}</td>
-                    <td>{row.eps.toFixed(2)}</td>
-                  </tr>
-                ))
-              }
+              {thicknessData.map((row) => (
+                <tr>
+                  <td class="row-label">{row.mm} mm</td>
+                  <td class="highlight-col">{row.pir.toFixed(2)}</td>
+                  <td>{row.xps.toFixed(2)}</td>
+                  <td>{row.eps.toFixed(2)}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -165,7 +172,7 @@ const generalItems = Object.values(t.techSpecs.general.items);
     </div>
   </section>
 
-  <!-- General Specs -->
+  <!-- ── General Specs ── -->
   <section class="specs-section">
     <div class="specs-container">
       <ScrollReveal variant="fade-up" delay={0}>
@@ -175,116 +182,132 @@ const generalItems = Object.values(t.techSpecs.general.items);
         </div>
       </ScrollReveal>
 
-      <div class="general-grid">
-        {
-          generalItems.map((item, i) => (
-            <ScrollReveal variant="fade-up" delay={(i % 3) as 0 | 1 | 2}>
-              <div class="general-item">
+      <ScrollReveal variant="fade-up" delay={1}>
+        <div class="general-grid">
+          {generalItems.map((item, i) => (
+            <div class="general-item">
+              <div class="general-item__icon" set:html={generalIcons[i]} />
+              <div class="general-item__text">
                 <span class="general-item__label">{item.label}</span>
                 <span class="general-item__value">{item.value}</span>
               </div>
-            </ScrollReveal>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="specs-cta">
-    <div class="specs-container">
-      <ScrollReveal variant="fade-up" delay={0}>
-        <div class="cta-card">
-          <h2>{t.techSpecs.cta.title}</h2>
-          <p>{t.techSpecs.cta.subtitle}</p>
-          <a href={contactHref} class="cta-btn">{t.techSpecs.cta.button}</a>
+            </div>
+          ))}
         </div>
       </ScrollReveal>
     </div>
   </section>
+
+  <!-- ── CTA ── -->
+  <section class="specs-cta">
+    <div class="specs-container">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <div class="cta-card">
+          <div class="cta-card__badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Engineering Support
+          </div>
+          <h2>{t.techSpecs.cta.title}</h2>
+          <p>{t.techSpecs.cta.subtitle}</p>
+          <a href={contactHref} class="cta-btn">
+            {t.techSpecs.cta.button}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
 </main>
 
 <style>
   /* ── Hero ── */
   .specs-hero {
-    background: linear-gradient(
-      135deg,
-      var(--color-bg-dark, #0f172a) 0%,
-      #1e3a5f 100%
-    );
-    padding: 12rem var(--space-4, 1.5rem) 6rem; /* sube de 10rem a 12rem */
     padding-top: calc(80px + 6rem);
-    min-height: 60vh; /* aumenta un poco */
+    padding-bottom: 6rem;
+    padding-left: var(--space-4, 1.5rem);
+    padding-right: var(--space-4, 1.5rem);
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    color: #fff;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .specs-hero__inner {
-    max-width: 720px;
+    max-width: 680px;
     margin: 0 auto;
   }
 
   .badge {
     display: inline-block;
-    padding: 0.3rem 1rem;
+    padding: 0.3rem 0.9rem;
     border-radius: 999px;
-    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
-    color: var(--color-accent);
-    font-size: 0.7rem;
-    font-weight: 700;
+    border: 1px solid var(--color-border);
+    color: var(--color-muted-light);
+    font-size: 0.68rem;
+    font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin-bottom: var(--space-4);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-mono);
   }
 
   .specs-hero h1 {
     font-size: clamp(2.4rem, 6vw, 4rem);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.1;
-    margin-bottom: var(--space-4);
-    color: #fff;
+    margin-bottom: 1.25rem;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    font-family: var(--font-display);
   }
 
   .specs-hero p {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.65);
+    font-size: 1rem;
+    color: var(--color-muted-light);
     line-height: 1.7;
-    max-width: 580px;
+    max-width: 520px;
     margin: 0 auto;
   }
 
   /* ── Sections ── */
   .specs-section {
-    padding: var(--space-20) var(--space-4);
+    padding: 5rem 1.5rem;
     background: var(--color-bg);
   }
 
   .specs-section--alt {
     background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .specs-container {
-    max-width: 1280px;
-    padding: 4rem 2rem;
+    max-width: 1100px;
     margin: 0 auto;
   }
 
   .section-header {
     text-align: center;
-    margin-bottom: var(--space-12);
+    margin-bottom: 2.5rem;
   }
 
   .section-header h2 {
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-    font-weight: 800;
-    color: var(--color-text-primary);
-    margin-bottom: var(--space-3);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+    font-family: var(--font-display);
   }
 
   .section-header p {
-    color: var(--color-text-secondary);
-    font-size: 1rem;
-    max-width: 560px;
+    color: var(--color-muted-light);
+    font-size: 0.95rem;
+    max-width: 520px;
     margin: 0 auto;
     line-height: 1.7;
   }
@@ -292,30 +315,31 @@ const generalItems = Object.values(t.techSpecs.general.items);
   /* ── Tables ── */
   .table-wrapper {
     overflow-x: auto;
-    border-radius: var(--radius-lg);
+    border-radius: 10px;
     border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-sm);
   }
 
   .specs-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.9rem;
-    min-width: 560px;
+    font-size: 0.875rem;
+    min-width: 520px;
   }
 
   .specs-table thead tr {
-    background: var(--color-accent);
-    color: #fff;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .specs-table thead th {
-    padding: 1rem 1.25rem;
+    padding: 0.9rem 1.25rem;
     text-align: left;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    color: var(--color-muted-light);
+    font-family: var(--font-mono);
   }
 
   .specs-table tbody tr {
@@ -328,141 +352,225 @@ const generalItems = Object.values(t.techSpecs.general.items);
   }
 
   .specs-table tbody tr:hover {
-    background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+    background: rgba(229, 229, 229, 0.03);
   }
 
   .specs-table tbody td {
-    padding: 0.9rem 1.25rem;
-    color: var(--color-text-primary);
+    padding: 0.85rem 1.25rem;
+    color: var(--color-text);
     vertical-align: middle;
   }
 
   .row-label {
-    color: var(--color-text-secondary) !important;
-    font-size: 0.8rem !important;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
+    color: var(--color-muted-light) !important;
+    font-size: 0.78rem !important;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    font-family: var(--font-mono);
     white-space: nowrap;
   }
 
   .highlight-col {
-    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
-    font-weight: 700;
+    background: rgba(229, 229, 229, 0.04);
+    font-weight: 600;
     color: var(--color-accent) !important;
   }
 
   thead .highlight-col {
-    background: color-mix(in srgb, #000 15%, var(--color-accent));
-    color: #fff !important;
+    color: var(--color-text) !important;
   }
 
   .table-note {
-    margin-top: var(--space-4);
-    font-size: 0.78rem;
-    color: var(--color-text-secondary);
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: var(--color-muted);
     font-style: italic;
     text-align: center;
+    font-family: var(--font-mono);
   }
 
   /* ── General Grid ── */
   .general-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-4);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    overflow: hidden;
   }
 
   .general-item {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    padding: var(--space-5) var(--space-6);
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.6rem 1.75rem;
     background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    transition:
-      box-shadow 0.2s ease,
-      border-color 0.2s ease;
+    transition: background 0.15s ease;
   }
 
   .general-item:hover {
-    border-color: var(--color-accent);
-    box-shadow: var(--shadow-md);
+    background: #222222;
+  }
+
+  .general-item__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #0f0f0f;
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--color-muted-light);
+  }
+
+  .general-item__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
   }
 
   .general-item__label {
-    font-size: 0.72rem;
-    font-weight: 700;
+    font-size: 0.65rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-text-secondary);
+    color: var(--color-muted);
+    font-family: var(--font-mono);
   }
 
   .general-item__value {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text);
     line-height: 1.4;
   }
 
   /* ── CTA ── */
   .specs-cta {
-    padding: var(--space-20) var(--space-4);
-    background: var(--color-bg);
+    padding: 5rem 1.5rem;
+    background: var(--color-bg) !important;
+    border-top: 1px solid var(--color-border);
   }
 
   .cta-card {
-    overflow: hidden;
-    background: linear-gradient(135deg, var(--color-accent) 0%, #1d4ed8 100%);
-    border-radius: var(--radius-xl);
-    padding: var(--space-16) var(--space-12);
+    border: 1px solid var(--color-border) !important;
+    border-radius: 12px;
+    padding: 4rem 3rem;
     text-align: center;
-    color: #fff;
+    background: var(--color-surface) !important;
+    background-image: none !important;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle dot pattern texture */
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, #2e2e2e 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* Top accent line */
+  .cta-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-muted-light), transparent);
+    pointer-events: none;
+  }
+
+  .cta-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-card__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    color: var(--color-muted-light);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-mono);
+    background: var(--color-bg);
   }
 
   .cta-card h2 {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 800;
-    margin-bottom: var(--space-4);
-    color: #fff;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--color-text) !important;
+    letter-spacing: -0.02em;
+    font-family: var(--font-display);
   }
 
   .cta-card p {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.75);
-    max-width: 500px;
-    margin: 0 auto var(--space-8);
+    font-size: 0.95rem;
+    color: var(--color-muted-light) !important;
+    max-width: 460px;
+    margin: 0 auto 2rem;
     line-height: 1.7;
   }
 
   .cta-btn {
-    display: inline-block;
-    padding: 0.9rem 2.2rem;
-    background: #fff;
-    color: var(--color-accent);
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 2rem;
+    background: var(--color-text) !important;
+    color: var(--color-bg) !important;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     text-decoration: none;
-    border-radius: var(--radius-md);
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
+    border-radius: 6px;
+    border: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    font-family: var(--font-mono);
   }
 
   .cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    opacity: 0.85;
+    transform: translateY(-1px);
   }
 
-  @media (max-width: 640px) {
-    .cta-card {
-      padding: var(--space-10) var(--space-6);
-    }
-
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
     .general-grid {
       grid-template-columns: 1fr;
+    }
+
+    .cta-card {
+      padding: 2.5rem 1.5rem;
+    }
+
+    .specs-section {
+      padding: 3.5rem 1.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .specs-hero {
+      padding-top: calc(80px + 4rem);
+      padding-bottom: 4rem;
     }
   }
 </style>

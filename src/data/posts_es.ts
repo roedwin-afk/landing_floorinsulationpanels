@@ -6,7 +6,7 @@ export const MOCK_POSTS_ES = [
     title: { rendered: "Instalación de Cuartos Fríos: Guía Completa" },
     excerpt: { rendered: "Un resumen rápido de los aspectos clave en la instalación de cuartos fríos." },
     content: { rendered: "<p>Contenido completo del artículo...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+1" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const MOCK_POSTS_ES = [
     title: { rendered: "Beneficios de los Paneles Aislados para Refrigeración" },
     excerpt: { rendered: "Descubre por qué los paneles aislados son esenciales en proyectos de refrigeración industrial." },
     content: { rendered: "<p>Contenido completo del artículo...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+2" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const MOCK_POSTS_ES = [
     title: { rendered: "Consejos de Mantenimiento para Cuartos Fríos" },
     excerpt: { rendered: "Recomendaciones prácticas para prolongar la vida útil de tu cuarto frío." },
     content: { rendered: "<p>Contenido completo del artículo...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+3" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const MOCK_POSTS_ES = [
     title: { rendered: "Paneles de Poliuretano vs Poliestireno: ¿Cuál es Mejor?" },
     excerpt: { rendered: "Comparación técnica entre los dos materiales de aislamiento más utilizados en cuartos fríos." },
     content: { rendered: "<p>Contenido completo del artículo...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+4" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ export const MOCK_POSTS_ES = [
     title: { rendered: "Seguridad Alimentaria y la Cadena de Frío: Lo Que Debes Saber" },
     excerpt: { rendered: "Cómo el aislamiento adecuado impacta directamente en la seguridad alimentaria y la cadena de frío." },
     content: { rendered: "<p>Contenido completo del artículo...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+5" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ export const MOCK_POSTS_ES = [
     title: { rendered: "Requisitos HACCP para Cuartos Fríos" },
     excerpt: { rendered: "Entiende las normas HACCP y cómo aplican en la construcción y materiales de cuartos fríos." },
     content: { rendered: "<p>Contenido completo del artículo...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+6" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ export const MOCK_POSTS_ES = [
     title: { rendered: "Cómo Mejorar la Eficiencia Energética en Cuartos Fríos" },
     excerpt: { rendered: "Estrategias prácticas para reducir el consumo energético en sistemas de refrigeración industrial." },
     content: { rendered: "<p>Contenido completo del artículo...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+7" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ export const MOCK_POSTS_ES = [
     title: { rendered: "Soluciones de Almacenamiento en Frío para la Industria Farmacéutica" },
     excerpt: { rendered: "Aspectos clave para construir cuartos fríos que cumplan con requisitos farmacéuticos." },
     content: { rendered: "<p>Contenido completo del artículo...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+8" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 9,
@@ -78,7 +78,7 @@ export const MOCK_POSTS_ES = [
     title: { rendered: "Sistema de Panel Macho-Hembra: Cómo Funciona" },
     excerpt: { rendered: "Cómo las uniones macho-hembra mejoran la instalación y el rendimiento térmico." },
     content: { rendered: "<p>Contenido completo del artículo...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+9" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 10,
@@ -87,6 +87,6 @@ export const MOCK_POSTS_ES = [
     title: { rendered: "Cómo Elegir el Espesor Correcto del Panel para tu Cuarto Frío" },
     excerpt: { rendered: "Guía práctica para seleccionar el espesor adecuado según temperatura y aplicación." },
     content: { rendered: "<p>Contenido completo del artículo...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+10" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
 ];

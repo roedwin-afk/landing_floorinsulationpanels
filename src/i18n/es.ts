@@ -120,7 +120,7 @@ export const es = {
             ],
         },
         legal: {
-            copyright: '© 2025 Constructive Solutions Group | División de Aislamiento de Pisos',
+            copyright: '© {year} Constructive Solutions Group | División de Aislamiento de Pisos',
             privacy: 'Política de Privacidad',
             compliance: 'Cumplimiento Industrial',
         },

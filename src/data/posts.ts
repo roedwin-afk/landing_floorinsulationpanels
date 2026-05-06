@@ -6,7 +6,7 @@ export const MOCK_POSTS = [
     title: { rendered: "Cold Room Installation: Complete Guide" },
     excerpt: { rendered: "A quick overview of the key aspects of cold room installation." },
     content: { rendered: "<p>Full post content...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+1" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const MOCK_POSTS = [
     title: { rendered: "Benefits of Insulated Panels for Cold Storage" },
     excerpt: { rendered: "Discover why insulated panels are essential for industrial refrigeration projects." },
     content: { rendered: "<p>Full post content...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+2" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const MOCK_POSTS = [
     title: { rendered: "Cold Room Maintenance Tips" },
     excerpt: { rendered: "Practical recommendations to extend the lifespan of your cold room system." },
     content: { rendered: "<p>Full post content...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+3" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const MOCK_POSTS = [
     title: { rendered: "Polyurethane vs Polystyrene Panels: Which is Better?" },
     excerpt: { rendered: "A technical comparison of the two most common insulation materials for cold rooms." },
     content: { rendered: "<p>Full post content...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+4" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ export const MOCK_POSTS = [
     title: { rendered: "Food Safety and the Cold Chain: What You Need to Know" },
     excerpt: { rendered: "How proper insulation directly impacts food safety compliance and cold chain integrity." },
     content: { rendered: "<p>Full post content...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+5" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ export const MOCK_POSTS = [
     title: { rendered: "HACCP Requirements for Cold Room Facilities" },
     excerpt: { rendered: "Understanding HACCP standards and how they apply to cold room construction and materials." },
     content: { rendered: "<p>Full post content...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+6" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ export const MOCK_POSTS = [
     title: { rendered: "How to Improve Energy Efficiency in Cold Rooms" },
     excerpt: { rendered: "Practical strategies to reduce energy consumption in industrial refrigeration facilities." },
     content: { rendered: "<p>Full post content...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+7" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ export const MOCK_POSTS = [
     title: { rendered: "Cold Storage Solutions for the Pharmaceutical Industry" },
     excerpt: { rendered: "Key considerations for building cold rooms that meet pharmaceutical storage requirements." },
     content: { rendered: "<p>Full post content...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+8" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 9,
@@ -78,7 +78,7 @@ export const MOCK_POSTS = [
     title: { rendered: "Understanding the Tongue-and-Groove Panel System" },
     excerpt: { rendered: "How precision tongue-and-groove joints improve installation speed and thermal performance." },
     content: { rendered: "<p>Full post content...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+9" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
   {
     id: 10,
@@ -87,6 +87,6 @@ export const MOCK_POSTS = [
     title: { rendered: "Choosing the Right Panel Thickness for Your Cold Room" },
     excerpt: { rendered: "A practical guide to selecting panel thickness based on temperature requirements and application." },
     content: { rendered: "<p>Full post content...</p>" },
-    _embedded: { "wp:featuredmedia": [{ source_url: "https://via.placeholder.com/800x400?text=Post+10" }] }
+    _embedded: { "wp:featuredmedia": [{ source_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }] }
   },
 ];

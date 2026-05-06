@@ -120,7 +120,7 @@ export const en = {
             ],
         },
         legal: {
-            copyright: '© 2025 Constructive Solutions Group | Floor Insulation Division',
+            copyright: '© {year} Constructive Solutions Group | Floor Insulation Division',
             privacy: 'Privacy Policy',
             compliance: 'Industrial Compliance',
         },

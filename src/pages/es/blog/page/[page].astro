@@ -8,7 +8,7 @@ import { MOCK_POSTS_ES } from "../../../../data/posts_es";
 import { es } from "../../../../i18n/es";
 
 export async function getStaticPaths() {
-  const POSTS_PER_PAGE = 5;
+  const POSTS_PER_PAGE = 6;
   const allPosts = MOCK_POSTS_ES;
   const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
 
