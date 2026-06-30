@@ -1,0 +1,336 @@
+---
+import type { TranslationKeys } from "../../i18n/en";
+import type { Lang } from "../../i18n/utils";
+import ScrollReveal from "../ui/ScrollReveal.astro";
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const contactHref = lang === "es" ? `${base}es/contact` : `${base}contact`;
+
+/* DeepString<typeof en> vuelve `string` los campos del array de FAQ,
+   pero la forma sigue siendo {id, question, answer}[]. Cast explícito
+   para recuperar el tipo real y poder mapear con seguridad. */
+interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+const items = t.faq.items as unknown as FaqItem[];
+
+/* JSON-LD FAQPage schema (schema.org) para resultados enriquecidos y GEO.
+   Construido en el frontmatter para inyectarse server-side, sin slots
+   nombrados (este BaseLayout solo expone <slot /> por defecto). */
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<main class="faq-page">
+  <!-- JSON-LD debe ser el primer hijo del slot por defecto -->
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqJsonLd)}
+  />
+
+  <!-- ── Hero ── -->
+  <section class="faq-hero">
+    <div class="faq-hero__inner">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <span class="badge">{t.faq.hero.badge}</span>
+        <h1>{t.faq.hero.title}</h1>
+        <p>{t.faq.hero.subtitle}</p>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- ── Accordion ── -->
+  <section class="faq-section">
+    <div class="faq-container">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <div class="faq-list" id="faq-list">
+          {
+            items.map((item, i) => (
+              <div class="faq-item" data-faq-item>
+                <h2 class="faq-item__heading">
+                  <button
+                    class="faq-item__trigger"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls={`faq-panel-${item.id}`}
+                    id={`faq-trigger-${item.id}`}
+                  >
+                    <span>{item.question}</span>
+                    <svg
+                      class="faq-item__icon"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
+                </h2>
+                <div
+                  class="faq-item__panel"
+                  id={`faq-panel-${item.id}`}
+                  role="region"
+                  aria-labelledby={`faq-trigger-${item.id}`}
+                >
+                  <p class="faq-item__answer">{item.answer}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="faq-cta">
+    <div class="faq-cta__inner">
+      <ScrollReveal variant="fade-up" delay={0}>
+        <h2>{t.faq.cta.title}</h2>
+        <p>{t.faq.cta.subtitle}</p>
+        <a href={contactHref} class="faq-cta__button">{t.faq.cta.button}</a>
+      </ScrollReveal>
+    </div>
+  </section>
+</main>
+
+<style>
+  /* ── Hero (mismo patrón que specs-hero) ── */
+  .faq-hero {
+    padding-top: calc(80px + 6rem);
+    padding-bottom: 4rem;
+    padding-left: var(--space-4, 1.5rem);
+    padding-right: var(--space-4, 1.5rem);
+    min-height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-hero__inner {
+    /* max-width: 680px; */
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    color: var(--color-muted-light);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-mono);
+  }
+
+  .faq-hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    font-family: var(--font-display);
+  }
+
+  .faq-hero p {
+    font-size: 1rem;
+    color: var(--color-muted-light);
+    line-height: 1.7;
+    /* max-width: 520px; */
+    margin: 0 auto;
+  }
+
+  /* ── Accordion section ── */
+  .faq-section {
+    padding: 4rem 1.5rem 5rem;
+    background: var(--color-bg);
+  }
+
+  .faq-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .faq-list {
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-item__heading {
+    margin: 0;
+  }
+
+  .faq-item__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    transition: background 0.15s ease;
+  }
+
+  .faq-item__trigger:hover {
+    background: rgba(229, 229, 229, 0.03);
+  }
+
+  .faq-item__icon {
+    flex-shrink: 0;
+    color: var(--color-muted-light);
+    transition: transform 0.25s ease;
+  }
+
+  .faq-item__trigger[aria-expanded="true"] .faq-item__icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-item__panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-item__answer {
+    padding: 0 1.5rem 1.5rem;
+    color: var(--color-muted-light);
+    font-size: 0.92rem;
+    line-height: 1.75;
+  }
+
+  /* ── CTA ── */
+  .faq-cta {
+    padding: 5rem 1.5rem;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .faq-cta__inner {
+    /* max-width: 560px; */
+    margin: 0 auto;
+  }
+
+  .faq-cta h2 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+    font-family: var(--font-display);
+  }
+
+  .faq-cta p {
+    color: var(--color-muted-light);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .faq-cta__button {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border-radius: 6px;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: opacity 0.2s ease;
+  }
+
+  .faq-cta__button:hover {
+    opacity: 0.85;
+  }
+</style>
+
+<script is:inline>
+  function initFaqAccordion() {
+    document.querySelectorAll("[data-faq-item]").forEach((item) => {
+      const btn = item.querySelector(".faq-item__trigger");
+      const panel = item.querySelector(".faq-item__panel");
+      if (!btn || !panel) return;
+
+      // Guard contra listeners duplicados al navegar con View Transitions
+      if (btn.dataset.faqReady === "true") return;
+      btn.dataset.faqReady = "true";
+
+      btn.addEventListener("click", () => {
+        const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+        // Cierra los demás paneles abiertos (acordeón exclusivo)
+        document.querySelectorAll("[data-faq-item]").forEach((other) => {
+          if (other === item) return;
+          const otherBtn = other.querySelector(".faq-item__trigger");
+          const otherPanel = other.querySelector(".faq-item__panel");
+          if (otherBtn && otherPanel) {
+            otherBtn.setAttribute("aria-expanded", "false");
+            otherPanel.style.maxHeight = "0px";
+          }
+        });
+
+        if (isOpen) {
+          btn.setAttribute("aria-expanded", "false");
+          panel.style.maxHeight = "0px";
+        } else {
+          btn.setAttribute("aria-expanded", "true");
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    });
+  }
+
+  // Solo astro:page-load — cubre carga inicial y navegaciones con ViewTransitions
+  document.addEventListener("astro:page-load", initFaqAccordion);
+</script>

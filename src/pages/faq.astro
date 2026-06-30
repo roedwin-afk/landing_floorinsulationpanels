@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FaqPage from "../components/sections/FaqPage.astro";
+import { getLang, useTranslations } from "../i18n/utils";
+
+const lang = getLang(Astro.url, import.meta.env.BASE_URL);
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  t={t}
+  lang={lang}
+  title={t.faq.meta.title}
+  description={t.faq.meta.description}
+>
+  <FaqPage t={t} lang={lang} />
+</BaseLayout>

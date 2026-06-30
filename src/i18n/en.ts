@@ -6,6 +6,7 @@ export const en = {
         blog: 'Blog',
         techSpecs: 'Technical Specs',
         contact: 'Contact Us',
+        faq: 'FAQ',
     },
     hero: {
         badge: 'Engineering Excellence',
@@ -390,6 +391,123 @@ export const en = {
         btncta: "Read More",
         btn_prev: "Previous",
         btn_next: "Next",
+    },
+    faq: {
+        meta: {
+            title: 'FAQ',
+            description:
+                'Answers to common technical questions about industrial floor insulation panels: PIR vs XPS vs EPS, compressive strength, R-values, installation, and certifications for Mexico and Central America.',
+        },
+        hero: {
+            badge: 'Technical FAQ',
+            title: 'Frequently Asked Questions',
+            subtitle:
+                'Direct answers to the technical questions engineers and procurement teams ask most about industrial floor insulation panels.',
+        },
+        items: [
+            {
+                id: 'what-is',
+                question: 'What is an industrial floor insulation panel?',
+                answer:
+                    'An industrial floor insulation panel is a rigid foam board (PIR, XPS, or EPS) installed under a concrete slab or screed to reduce heat transfer and energy loss in warehouses, cold storage, and logistics facilities. Unlike wall or roof insulation, floor panels must also resist sustained compressive loads from racking, forklifts, and stored goods, which is why they are specified by compressive strength (kPa) as well as thermal conductivity (W/m·K).',
+            },
+            {
+                id: 'pir-vs-xps-vs-eps',
+                question: 'Which is better for industrial floors: PIR, XPS, or EPS?',
+                answer:
+                    'XPS is generally the better choice for industrial floors because of its higher compressive strength (up to 750–1200 kPa in our panels) and very low moisture absorption, both critical under heavy racking and forklift traffic. PIR offers a lower thermal conductivity (around 0.022 W/m·K) and thinner panels for the same R-value, making it a strong option where floor height is limited but loads are moderate. EPS is the most cost-effective option for large-scale, lower-load areas. The right choice depends on your specific load class, available depth, and budget; our technical department can run the calculation for your project.',
+            },
+            {
+                id: 'compressive-strength',
+                question: 'What compressive strength do I need for forklift traffic?',
+                answer:
+                    'For warehouses with regular forklift and pallet truck traffic, insulation panels should provide at least 750 kPa of compressive strength, and our panels are manufactured in the 750–1200 kPa range depending on thickness and core material. Compressive strength is declared as the load at 10% deformation per EN 826; in practice, design loads should stay well below that threshold to avoid long-term creep. A structural engineer should confirm the exact rating based on your racking layout and vehicle weights.',
+            },
+            {
+                id: 'thickness-r-value',
+                question: 'What panel thickness do I need for a given R-value?',
+                answer:
+                    'Panel thickness depends on the core material and the R-value (or U-value) required by your project: as a reference, 100 mm of PIR delivers roughly 4.55 R, while the same R-value needs about 100–125 mm of XPS or EPS due to their slightly higher thermal conductivity. We manufacture panels from 60 mm to 200 mm in standard widths of 1150 mm, with custom core densities available for specific energy models. Send us your target U-value and we will return the matching thickness and material recommendation.',
+            },
+            {
+                id: 'cost-per-m2',
+                question: 'How much does industrial floor insulation cost per m²?',
+                answer:
+                    'Cost per m² varies mainly by core material and thickness: EPS is the most economical option, XPS sits in the mid-range, and PIR commands a premium for its higher thermal performance and fire resistance. Because pricing depends on project volume, thickness, and delivery location across Mexico and Central America, we provide an exact quote after a short technical review rather than a fixed online price. Request a quote at eng@floorinsulationpanels.com or +52 55 9990 3546 and we will respond with a project-specific breakdown.',
+            },
+            {
+                id: 'installation-process',
+                question: 'How is a floor insulation system installed over a concrete slab?',
+                answer:
+                    'Installation follows four stages: subfloor leveling and moisture analysis, dry-interlocking of the tongue-and-groove panels with standardized alignment tools, joint sealing to eliminate thermal bridges, and a final load-capacity inspection before handover. This dry-installation method is designed to reduce on-site project timelines by roughly 30% compared to wet-laid systems. Full installation guidance, including substrate tolerances, is available on our Installation page.',
+            },
+            {
+                id: 'sealant-cure-time',
+                question: 'How long does joint sealant need to cure before allowing traffic?',
+                answer:
+                    'Joint sealant requires a minimum of 3 days of curing before forklift or pallet truck traffic is allowed on the floor. Permitting traffic earlier causes edge spalling at the joints, which progresses rapidly under repeated wheel loads once it starts. Only polyurethane sealants rated for forklift traffic should be used on industrial floor joints; standard construction sealants are not sufficient.',
+            },
+            {
+                id: 'uneven-substrate',
+                question: 'What happens if the substrate is not level before installing panels?',
+                answer:
+                    'Installing panels on a substrate with more than 5 mm of deviation under a 3 m straight edge causes joint gaps, panel rocking, and stress fractures once dynamic loads are applied. This is one of the most common causes of premature floor failure in industrial projects. Subfloor leveling and a moisture analysis are mandatory first steps in our installation process for exactly this reason.',
+            },
+            {
+                id: 'cold-storage',
+                question: 'Are floor insulation panels suitable for cold storage and freezer rooms?',
+                answer:
+                    'Yes, our panel systems are engineered for cold storage and freezer-room applications, maintaining stable temperatures and preventing thermal bridges that drive up refrigeration energy costs. For sub-zero environments we typically recommend higher-density PIR or XPS cores combined with a continuous vapor barrier to prevent moisture migration and ice formation within the slab. Tell us your target temperature range and we will size the panel accordingly.',
+            },
+            {
+                id: 'vapor-barrier',
+                question: 'Do I need a vapor barrier (DPM) under the insulation panel?',
+                answer:
+                    'PIR panels require a damp-proof membrane (DPM) beneath them, since their foil facers can be damaged by sustained ground moisture and the foam itself is not designed for direct ground contact. XPS panels have a closed-cell structure with very low water absorption and can be installed in direct contact with the slab without a DPM in most cases. Our moisture-control core layer is specified per project to match the soil and groundwater conditions on site.',
+            },
+            {
+                id: 'lifespan',
+                question: 'How long does industrial floor insulation last?',
+                answer:
+                    "Properly installed PIR and XPS floor panels typically last 40–50 years without significant loss of thermal or structural performance, since the closed-cell foam core does not sag, settle, or degrade under normal industrial loads. Long-term performance depends heavily on correct installation: protecting the moisture-control layer, respecting sealant cure times, and avoiding loads above the panel's rated compressive strength.",
+            },
+            {
+                id: 'certifications-mexico',
+                question: 'Do the panels meet certification requirements for industrial use in Mexico?',
+                answer:
+                    'Yes, our panel systems are manufactured under ISO 9001 certified quality processes and meet Euroclass B-s1, d0 fire classification, which is recognized across industrial and commercial specifications used in Mexico and Central America. For projects requiring a specific local code reference (NOM, NFPA, or client-specific specification), our technical department can supply the corresponding test documentation and compliance certificates.',
+            },
+            {
+                id: 'fire-rating',
+                question: 'What fire classification do the floor panels have?',
+                answer:
+                    'Our standard floor insulation panels carry a Euroclass B-s1, d0 fire classification, indicating limited combustibility with very low smoke production and no flaming droplets. This rating is suitable for the majority of industrial warehouse and logistics specifications; projects with stricter fire-safety requirements (such as facilities storing flammable goods) should confirm the rating against the applicable local fire code before specification.',
+            },
+            {
+                id: 'maintenance',
+                question: 'What maintenance does an insulated industrial floor require?',
+                answer:
+                    "A properly installed insulated floor requires minimal maintenance: periodic visual inspection of joint sealant for cracking, prompt repair of any surface damage from impacts or chemical spills, and avoiding loads that exceed the panel\'s rated compressive strength. Re-sealing joints every few years in high-traffic zones is the most common preventive task and significantly extends the floor's service life.",
+            },
+            {
+                id: 'where-to-buy-mexico',
+                question: 'Where can I buy industrial floor insulation panels in Mexico?',
+                answer:
+                    'Floor Insulation Panels supplies engineered PIR, XPS, and EPS panel systems for industrial and cold storage projects across Mexico and Central America directly from our technical sales team. Contact us at eng@floorinsulationpanels.com, call +52 55 9990 3546, or visit our offices at Avenida Presidente Masaryk No. 61, Polanco V Sección, Mexico City, to request a project quote.',
+            },
+            {
+                id: 'lead-time',
+                question: 'What is the typical lead time for an industrial floor insulation project?',
+                answer:
+                    'Lead time depends on panel thickness, core material, and order volume, but standard-spec PIR and XPS panels are typically available faster than custom-density orders, which require additional manufacturing time. Share your project specifications (area, thickness, target dates) with our technical department and we will confirm an exact delivery schedule for your site in Mexico or Central America.',
+            },
+        ],
+        cta: {
+            title: "Didn't find the answer you were looking for?",
+            subtitle:
+                'Our technical engineers can review your load calculations, thermal requirements, and project timeline directly.',
+            button: 'Talk to Technical Support',
+        },
     },
 } as const;
 

@@ -1,0 +1,49 @@
+---
+import { BlogPost, Comments, CommentForm } from "astro-blog-kit/components";
+import { createWPClient, getStaticPathsForPosts } from "astro-blog-kit/utils";
+import { resolveHero, resolveUI } from 'astro-blog-kit';
+import config from "../../../../blog.config";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getLang, useTranslations } from '../../../i18n/utils';
+
+export async function getStaticPaths() {
+  const wp = createWPClient(config.wpUrl);
+  const posts = await wp.getAllPosts();
+  return getStaticPathsForPosts(posts);
+}
+
+const { post } = Astro.props;
+
+const wp = createWPClient(config.wpUrl);
+const comments = post.id ? await wp.getComments(post.id) : [];
+
+const locale = config.locale ?? 'en';
+const hero = resolveHero(config.hero, locale);
+const ui = resolveUI(config.ui, locale);
+
+const bt = {
+  blog: {
+    tagline:     hero.tagline,
+    title_line1: hero.titleLine1,
+    title_line2: hero.titleLine2,
+    description: hero.description,
+    btncta:      ui.readMoreLabel,
+    btn_prev:    ui.btnPrev,
+    btn_next:    ui.btnNext,
+  },
+};
+
+const lang = getLang(Astro.url, import.meta.env.BASE_URL);
+const t = useTranslations(lang);
+---
+
+<BaseLayout 
+  title="Industrial Floor Insulation"
+  description="High-density floor insulation panel systems for industrial warehouses and cold storage facilities."
+  t={t} 
+  lang={lang}
+>
+  <BlogPost post={post} t={bt} lang={config.locale ?? "en"} />
+  <Comments comments={comments} postId={post.id ?? 0} />
+  <CommentForm postId={post.id ?? 0} apiRoute="/api/comments" />
+</BaseLayout>

@@ -16,15 +16,14 @@ const thankYouPath = lang === "es" ? "es/thank-you" : "thank-you";
 const thankYouUrl = `${site}${base}${thankYouPath}`;
 
 const contactItems = [
-  { icon: Phone,  value: t.contactForm.phone   },
-  { icon: Mail,   value: t.contactForm.email   },
+  { icon: Phone, value: t.contactForm.phone },
+  { icon: Mail, value: t.contactForm.email },
   { icon: MapPin, value: t.contactForm.address },
 ];
 ---
 
 <section id="contact" class="contact">
   <div class="contact__inner">
-
     <!-- Left column -->
     <div class="contact__info">
       <span class="contact__eyebrow">{t.contactForm.eyebrow}</span>
@@ -32,14 +31,16 @@ const contactItems = [
       <p class="contact__description">{t.contactForm.description}</p>
 
       <ul class="contact__list">
-        {contactItems.map(({ icon: Icon, value }) => (
-          <li class="contact__item">
-            <div class="contact__icon">
-              <Icon size={16} />
-            </div>
-            <p class="contact__item-value">{value}</p>
-          </li>
-        ))}
+        {
+          contactItems.map(({ icon: Icon, value }) => (
+            <li class="contact__item">
+              <div class="contact__icon">
+                <Icon size={16} />
+              </div>
+              <p class="contact__item-value">{value}</p>
+            </li>
+          ))
+        }
       </ul>
 
       <div class="contact__map">
@@ -63,44 +64,89 @@ const contactItems = [
 
         <div class="form__row">
           <div class="form__group">
-            <label class="form__label" for="Name_First">{t.contactForm.fields.firstName}</label>
-            <input id="Name_First" type="text" name="Name_First" maxlength="255"
-              class="form__input" placeholder={t.contactForm.fields.firstName} required />
+            <label class="form__label" for="Name_First"
+              >{t.contactForm.fields.firstName}</label
+            >
+            <input
+              id="Name_First"
+              type="text"
+              name="Name_First"
+              maxlength="255"
+              class="form__input"
+              placeholder={t.contactForm.fields.firstName}
+              required
+            />
           </div>
           <div class="form__group">
-            <label class="form__label" for="Name_Last">{t.contactForm.fields.lastName}</label>
-            <input id="Name_Last" type="text" name="Name_Last" maxlength="255"
-              class="form__input" placeholder={t.contactForm.fields.lastName} required />
+            <label class="form__label" for="Name_Last"
+              >{t.contactForm.fields.lastName}</label
+            >
+            <input
+              id="Name_Last"
+              type="text"
+              name="Name_Last"
+              maxlength="255"
+              class="form__input"
+              placeholder={t.contactForm.fields.lastName}
+              required
+            />
           </div>
         </div>
 
         <div class="form__group">
-          <label class="form__label" for="Email">{t.contactForm.fields.email}</label>
-          <input id="Email" type="email" name="Email" maxlength="255"
-            class="form__input" placeholder={t.contactForm.fields.email_placeholder} required />
+          <label class="form__label" for="Email"
+            >{t.contactForm.fields.email}</label
+          >
+          <input
+            id="Email"
+            type="email"
+            name="Email"
+            maxlength="255"
+            class="form__input"
+            placeholder={t.contactForm.fields.email_placeholder}
+            required
+          />
         </div>
 
         <div class="form__group">
-          <label class="form__label" for="PhoneNumber">{t.contactForm.fields.phone}</label>
-          <input id="PhoneNumber" type="tel" name="PhoneNumber_countrycode" maxlength="20"
-            class="form__input" placeholder={t.contactForm.fields.phone_placeholder} />
+          <label class="form__label" for="PhoneNumber"
+            >{t.contactForm.fields.phone}</label
+          >
+          <input
+            id="PhoneNumber"
+            type="tel"
+            name="PhoneNumber_countrycode"
+            maxlength="20"
+            class="form__input"
+            placeholder={t.contactForm.fields.phone_placeholder}
+          />
         </div>
 
         <div class="form__group">
-          <label class="form__label" for="MultiLine">{t.contactForm.fields.message}</label>
-          <textarea id="MultiLine" name="MultiLine" rows="18"
+          <label class="form__label" for="MultiLine"
+            >{t.contactForm.fields.message}</label
+          >
+          <textarea
+            id="MultiLine"
+            name="MultiLine"
+            rows="18"
             class="form__input form__textarea"
-            placeholder={t.contactForm.fields.message_placeholder} required></textarea>
+            placeholder={t.contactForm.fields.message_placeholder}
+            required></textarea>
         </div>
 
-        <button type="submit" class="form__submit">{t.contactForm.submit}</button>
+        <button type="submit" class="form__submit"
+          >{t.contactForm.submit}</button
+        >
       </form>
     </div>
-
   </div>
 </section>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 
 <script is:inline>
@@ -113,15 +159,42 @@ const contactItems = [
     const lng = -99.1946;
 
     const customIcon = window.L.icon({
-      iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png",
-      shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+      iconUrl:
+        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png",
+      shadowUrl:
+        "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
       shadowSize: [41, 41],
     });
 
-    const map = window.L.map("contact-leaflet-map").setView([lat, lng], 16);
+    const isTouchDevice =
+      "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+    const map = window.L.map("contact-leaflet-map", {
+      zoomControl: false,
+      scrollWheelZoom: false,
+      dragging: !isTouchDevice,
+      tap: false,
+    }).setView([lat, lng], 16);
+
+    if (isTouchDevice) {
+      const overlay = document.createElement("div");
+      overlay.className = "map-touch-overlay";
+      overlay.innerHTML = `<span>Usa dos dedos para mover el mapa</span>`;
+      mapContainer.style.position = "relative";
+      mapContainer.appendChild(overlay);
+
+      mapContainer.addEventListener(
+        "touchstart",
+        () => {
+          overlay.classList.add("is-hidden");
+          map.dragging.enable();
+        },
+        { once: true },
+      );
+    }
 
     window.L.tileLayer(
       "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
@@ -129,7 +202,7 @@ const contactItems = [
         attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
         subdomains: "abcd",
         maxZoom: 19,
-      }
+      },
     ).addTo(map);
 
     window.L.marker([lat, lng], { icon: customIcon })
@@ -163,7 +236,7 @@ const contactItems = [
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 4rem;    
+    gap: 4rem;
   }
 
   @media (min-width: 1024px) {
@@ -185,7 +258,6 @@ const contactItems = [
     border-bottom: 1px solid rgba(56, 189, 248, 0.3);
     padding-bottom: 0.4rem;
     margin-bottom: 1.5rem;
-    
   }
 
   .contact__title {
@@ -305,7 +377,9 @@ const contactItems = [
     font-size: 0.9rem;
     color: var(--color-text);
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .form__input::placeholder {
@@ -335,7 +409,9 @@ const contactItems = [
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
   }
 
   .form__submit:hover {

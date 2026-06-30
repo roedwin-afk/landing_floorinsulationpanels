@@ -6,6 +6,7 @@ export const es = {
         blog: 'Blog',
         techSpecs: 'Especificaciones Técnicas',
         contact: 'Contáctanos',
+        faq: 'FAQ',
     },
     hero: {
         badge: 'Excelencia en Ingeniería',
@@ -390,5 +391,122 @@ export const es = {
         btncta: "Leer Más",
         btn_prev: "Anterior",
         btn_next: "Siguiente",
+    },
+    faq: {
+        meta: {
+            title: 'Preguntas Frecuentes',
+            description:
+                'Respuestas a las preguntas técnicas más comunes sobre paneles de aislamiento de piso industrial: PIR vs XPS vs EPS, resistencia a la compresión, R-value, instalación y certificaciones para México y Centroamérica.',
+        },
+        hero: {
+            badge: 'FAQ Técnico',
+            title: 'Preguntas Frecuentes',
+            subtitle:
+                'Respuestas directas a las preguntas técnicas que más hacen ingenieros y equipos de compras sobre paneles de aislamiento de piso industrial.',
+        },
+        items: [
+            {
+                id: 'que-es',
+                question: '¿Qué es un panel de aislamiento de piso industrial?',
+                answer:
+                    'Un panel de aislamiento de piso industrial es una placa de espuma rígida (PIR, XPS o EPS) que se instala debajo de la losa de concreto o el firme para reducir la transferencia de calor y las pérdidas de energía en bodegas, cámaras frigoríficas e instalaciones logísticas. A diferencia del aislamiento de muro o techo, el panel de piso debe resistir cargas de compresión sostenidas por racks, montacargas y mercancía almacenada, por lo que se especifica tanto por resistencia a la compresión (kPa) como por conductividad térmica (W/m·K).',
+            },
+            {
+                id: 'pir-vs-xps-vs-eps',
+                question: '¿Qué es mejor para piso industrial: PIR, XPS o EPS?',
+                answer:
+                    'El XPS suele ser la mejor opción para piso industrial por su mayor resistencia a la compresión (hasta 750–1200 kPa en nuestros paneles) y su muy baja absorción de humedad, ambos factores críticos bajo racks pesados y tráfico de montacargas. El PIR ofrece menor conductividad térmica (alrededor de 0.022 W/m·K) y permite paneles más delgados para el mismo R-value, lo cual conviene cuando la altura disponible es limitada pero la carga es moderada. El EPS es la opción más económica para áreas grandes con carga baja. La elección correcta depende de tu clase de carga, la profundidad disponible y el presupuesto; nuestro departamento técnico puede hacer el cálculo para tu proyecto.',
+            },
+            {
+                id: 'resistencia-compresion',
+                question: '¿Qué resistencia a la compresión necesito para tráfico de montacargas?',
+                answer:
+                    'Para bodegas con tráfico regular de montacargas y patines hidráulicos, el aislamiento de piso debe ofrecer al menos 750 kPa de resistencia a la compresión; nuestros paneles se fabrican en el rango de 750 a 1200 kPa según espesor y núcleo. La resistencia a la compresión se declara como la carga al 10% de deformación según EN 826; en la práctica, las cargas de diseño deben mantenerse muy por debajo de ese umbral para evitar deformación a largo plazo. Un ingeniero estructural debe confirmar el valor exacto según el layout de racks y el peso de los vehículos.',
+            },
+            {
+                id: 'espesor-r-value',
+                question: '¿Qué espesor de panel necesito para un R-value determinado?',
+                answer:
+                    'El espesor depende del núcleo y del R-value (o U-value) que requiera tu proyecto: como referencia, 100 mm de PIR entregan aproximadamente 4.55 de R, mientras que el mismo R-value requiere entre 100 y 125 mm de XPS o EPS por su conductividad térmica ligeramente mayor. Fabricamos paneles de 60 mm a 200 mm en anchos estándar de 1150 mm, con densidades de núcleo personalizadas para modelos energéticos específicos. Envíanos tu U-value objetivo y te devolvemos el espesor y material recomendado.',
+            },
+            {
+                id: 'costo-m2',
+                question: '¿Cuánto cuesta el aislamiento de piso industrial por m²?',
+                answer:
+                    'El costo por m² varía principalmente según el núcleo y el espesor: el EPS es la opción más económica, el XPS se ubica en un rango medio, y el PIR tiene un costo mayor por su desempeño térmico y resistencia al fuego superiores. Como el precio depende del volumen del proyecto, el espesor y la ubicación de entrega en México y Centroamérica, entregamos una cotización exacta tras una breve revisión técnica en lugar de un precio fijo en línea. Solicita tu cotización a eng@floorinsulationpanels.com o al +52 55 9990 3546 y te respondemos con el desglose específico de tu proyecto.',
+            },
+            {
+                id: 'proceso-instalacion',
+                question: '¿Cómo se instala un sistema de aislamiento de piso sobre losa de concreto?',
+                answer:
+                    'La instalación sigue cuatro etapas: nivelación del sustrato y análisis de humedad, ensamble en seco de los paneles machihembrados con herramientas de alineación estandarizadas, sellado de juntas para eliminar puentes térmicos, e inspección final de capacidad de carga antes de la entrega. Este método de instalación en seco está diseñado para reducir los tiempos de obra hasta en un 30% frente a sistemas instalados en húmedo. Encontrarás la guía completa de instalación, incluyendo tolerancias de sustrato, en nuestra página de Instalación.',
+            },
+            {
+                id: 'curado-sellador',
+                question: '¿Cuánto tiempo debe curar el sellador de juntas antes de permitir tráfico?',
+                answer:
+                    'El sellador de juntas necesita un mínimo de 3 días de curado antes de permitir tráfico de montacargas o patines hidráulicos sobre el piso. Permitir tráfico antes de ese tiempo causa descascaramiento del borde de la junta, el cual progresa rápidamente bajo cargas repetidas una vez que comienza. Solo deben usarse selladores de poliuretano calificados para tráfico de montacargas en juntas de piso industrial; los selladores de construcción estándar no son suficientes.',
+            },
+            {
+                id: 'sustrato-desnivelado',
+                question: '¿Qué pasa si el sustrato no está nivelado antes de instalar los paneles?',
+                answer:
+                    'Instalar paneles sobre un sustrato con más de 5 mm de desviación bajo una regla de 3 m genera huecos en las juntas, balanceo de los paneles y fracturas por esfuerzo en cuanto se aplican cargas dinámicas. Esta es una de las causas más comunes de falla prematura en pisos industriales. Por eso la nivelación del sustrato y el análisis de humedad son pasos obligatorios al inicio de nuestro proceso de instalación.',
+            },
+            {
+                id: 'camaras-frigorificas',
+                question: '¿Los paneles de aislamiento de piso sirven para cuartos fríos y cámaras de refrigeración?',
+                answer:
+                    'Sí, nuestros sistemas de panel están diseñados para cuartos fríos y cámaras de refrigeración, manteniendo temperaturas estables y evitando puentes térmicos que elevan el costo energético de refrigeración. Para ambientes bajo cero generalmente recomendamos núcleos de PIR o XPS de mayor densidad combinados con una barrera de vapor continua que evite la migración de humedad y la formación de hielo dentro de la losa. Indícanos el rango de temperatura objetivo y dimensionamos el panel correspondiente.',
+            },
+            {
+                id: 'barrera-vapor',
+                question: '¿Necesito una barrera de vapor (DPM) bajo el panel aislante?',
+                answer:
+                    'Los paneles de PIR requieren una membrana a prueba de humedad (DPM) debajo, ya que sus forros de aluminio pueden dañarse por humedad sostenida del terreno y la espuma no está diseñada para contacto directo con el suelo. Los paneles de XPS tienen una estructura de celda cerrada con muy baja absorción de agua y pueden instalarse en contacto directo con la losa sin DPM en la mayoría de los casos. Nuestra capa de control de humedad se especifica por proyecto según las condiciones de suelo y manto freático del sitio.',
+            },
+            {
+                id: 'vida-util',
+                question: '¿Cuánto dura el aislamiento de piso industrial?',
+                answer:
+                    'Un panel de piso de PIR o XPS correctamente instalado dura típicamente entre 40 y 50 años sin pérdida significativa de desempeño térmico o estructural, ya que el núcleo de espuma de celda cerrada no se hunde, asienta ni degrada bajo cargas industriales normales. La vida útil depende en gran medida de una instalación correcta: proteger la capa de control de humedad, respetar el tiempo de curado del sellador y evitar cargas por encima de la resistencia a la compresión del panel.',
+            },
+            {
+                id: 'certificaciones-mexico',
+                question: '¿Los paneles cumplen normativa o certificación para uso industrial en México?',
+                answer:
+                    'Sí, nuestros sistemas de panel se fabrican bajo procesos de calidad certificados ISO 9001 y cumplen la clasificación de fuego Euroclase B-s1, d0, reconocida en especificaciones industriales y comerciales usadas en México y Centroamérica. Para proyectos que requieran una referencia normativa local específica (NOM, NFPA u otra especificación del cliente), nuestro departamento técnico puede entregar la documentación de pruebas y certificados de cumplimiento correspondientes.',
+            },
+            {
+                id: 'clasificacion-fuego',
+                question: '¿Cuál es la clasificación de resistencia al fuego de los paneles?',
+                answer:
+                    'Nuestros paneles de aislamiento de piso estándar tienen clasificación de fuego Euroclase B-s1, d0, lo que indica combustibilidad limitada, muy baja generación de humo y sin desprendimiento de gotas en llamas. Esta clasificación es adecuada para la mayoría de las especificaciones de bodegas industriales y logística; proyectos con requisitos de seguridad contra incendio más estrictos (como instalaciones que almacenan productos inflamables) deben confirmar la clasificación contra el código de fuego local aplicable antes de especificar.',
+            },
+            {
+                id: 'mantenimiento',
+                question: '¿Qué mantenimiento requiere un piso industrial aislado?',
+                answer:
+                    'Un piso aislado correctamente instalado requiere mantenimiento mínimo: inspección visual periódica del sellador de juntas para detectar agrietamiento, reparación oportuna de cualquier daño superficial por impactos o derrames químicos, y evitar cargas que superen la resistencia a la compresión especificada del panel. Resellar las juntas cada ciertos años en zonas de alto tráfico es la tarea preventiva más común y extiende de forma significativa la vida útil del piso.',
+            },
+            {
+                id: 'donde-comprar-mexico',
+                question: '¿Dónde comprar paneles de aislamiento de piso industrial en México?',
+                answer:
+                    'Floor Insulation Panels suministra sistemas de panel PIR, XPS y EPS diseñados para proyectos industriales y de refrigeración en México y Centroamérica directamente a través de nuestro equipo de ventas técnicas. Contáctanos en eng@floorinsulationpanels.com, llama al +52 55 9990 3546, o visítanos en Avenida Presidente Masaryk No. 61, Int. 901, Polanco V Sección, C.P. 11560, Miguel Hidalgo, Ciudad de México, para solicitar una cotización de proyecto.',
+            },
+            {
+                id: 'tiempo-entrega',
+                question: '¿Cuál es el tiempo de entrega típico para un proyecto industrial?',
+                answer:
+                    'El tiempo de entrega depende del espesor del panel, el núcleo y el volumen del pedido; los paneles de PIR y XPS en especificación estándar suelen estar disponibles más rápido que los pedidos con densidad personalizada, que requieren tiempo de fabricación adicional. Comparte las especificaciones de tu proyecto (área, espesor, fechas objetivo) con nuestro departamento técnico y confirmamos un calendario de entrega exacto para tu obra en México o Centroamérica.',
+            },
+        ],
+        cta: {
+            title: '¿No encontraste la respuesta que buscabas?',
+            subtitle:
+                'Nuestros ingenieros técnicos pueden revisar directamente tus cálculos de carga, requisitos térmicos y cronograma de proyecto.',
+            button: 'Hablar con Soporte Técnico',
+        },
     },
 } as const;
