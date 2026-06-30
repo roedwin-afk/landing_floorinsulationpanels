@@ -6,7 +6,6 @@ import PanelAnatomy from '../components/sections/PanelAnatomy.astro';
 import InstallationProcess from '../components/sections/InstallationProcess.astro';
 import TechSpecs from '../components/sections/TechSpecs.astro';
 import ContactCTA from '../components/sections/ContactCTA.astro';
-import Footer from '../components/layout/Footer.astro';
 import { getLang, useTranslations } from '../i18n/utils';
 
 const lang = getLang(Astro.url, import.meta.env.BASE_URL);
@@ -27,5 +26,4 @@ const t = useTranslations(lang);
     <TechSpecs t={t} lang={lang} />
     <ContactCTA t={t} lang={lang} />
   </main>
-  <Footer t={t} lang={lang} />
 </BaseLayout>
