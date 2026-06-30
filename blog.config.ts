@@ -14,7 +14,7 @@ export default defineBlogConfig({
     muted: '#a3a3a3',      // Gris claro intermedio para fechas y extractos (antes era #666666, invisible en dark mode)
     mutedLight: '#cbd5e1', // Gris aún más claro para textos pequeños legibles
     border: '#262626',     // Bordes finos y limpios para separar las tarjetas
-    black: '#0a0a0a',
+    black: '#ffffff',
     white: '#ffffff',
     fontHeading: '"DM Sans", sans-serif',
     fontBody: '"Inter", sans-serif',
